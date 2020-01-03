@@ -1,0 +1,103 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+  background: #141E30;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: #fff 
+}
+input, input[type=text]:not(.browser-default).validate+label, input.valid[type=text]:not(.browser-default),input[type=text]:not(.browser-default):focus:not([readonly]) {
+  color: #fff !important;
+}
+/* Navbar */
+nav{
+  background-color: transparent  !important;
+}
+.card{
+  color: black;
+  padding: 10px;
+}
+.card input, .card input[type=text]:not(.browser-default).validate+label, .card input.valid[type=text]:not(.browser-default), .card input[type=text]:not(.browser-default):focus:not([readonly]){
+  color: black !important;
+}
+
+/* Signin */
+.box-input-signin{
+  display: block;
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.box-input-signin input{
+  color: #fff
+}
+.btn-signin{
+  width: 45%;
+}
+
+/* Welcome */
+.movie-img img {
+  height: 180px;
+  width: 120px;
+  object-fit: cover;
+}
+
+/* Search Bar */
+.box-search{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+}
+
+.box-search button{
+  margin-top: 25px;
+}
+
+.card-category {
+  background-size: cover;
+  background-position: center;
+  background-image: url(https://cdn.pixabay.com/photo/2018/09/24/17/34/cinema-3700446_1280.png);
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+/* UserShow */
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.top-left {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 16px;
+}
+
+.avatar-card {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+
+@media only screen and (max-width: 600px) {
+  /* Signin Signup */
+  .box-input-signin{
+    width: 100%;
+  }
+  .btn-signin{
+    width: 100%;
+  }
+}
