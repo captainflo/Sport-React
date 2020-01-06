@@ -1,0 +1,9 @@
+.emblem{
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+}

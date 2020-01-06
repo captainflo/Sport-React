@@ -1,8 +1,16 @@
 import keys from '../../config/keys';
 import axios from 'axios';
-import { AUTH_USER, AUTH_ERROR, EDIT_USER } from './types';
+import {
+  AUTH_USER,
+  AUTH_ERROR,
+  EDIT_USER,
+  GET_LEAGUE,
+  LEAGUE_ERROR
+} from './types';
 import * as JWT from 'jwt-decode';
 
+///////////////////////////////// User Authentification ///////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 // Signup with Passport JWT
 export const signup = (formProps, callback) => async dispatch => {
   try {
@@ -105,4 +113,20 @@ export const deleteUser = (id, callback) => async dispatch => {
   dispatch({ type: EDIT_USER, payload: '' });
   localStorage.removeItem('token');
   callback(); /* history callback */
+};
+
+///////////////////////////////// Sport IO ///////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+// MLS League
+export const competition = (league, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://api.sportsdata.io/v3/soccer/scores/json/CompetitionDetails/${league}?key=${keys.api}`
+    );
+    dispatch({ type: GET_LEAGUE, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({ type: LEAGUE_ERROR, payload: 'cannot find the league' });
+  }
 };

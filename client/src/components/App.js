@@ -12,16 +12,14 @@ import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import UserShow from './user/UserShow';
 import UserEdit from './user/UserEdit';
+import MlsLeague from './pages/MlsLeague';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
     // Sidebar
-    const elem = document.querySelector('.sidenav');
-    M.Sidenav.init(elem, {
-      edge: 'left',
-      inDuration: 250
-    });
+    var elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems, {});
   }
 
   render() {
@@ -33,6 +31,7 @@ class App extends React.Component {
           <Route path="/signout" component={Signout} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
+          <Route path="/mls" component={MlsLeague} />
 
           {this.props.authenticated ? (
             <div>
