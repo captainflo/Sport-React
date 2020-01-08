@@ -6,27 +6,25 @@ import '../css/Welcome.css';
 import Footer from '../utils/Footer';
 
 class Welcome extends React.Component {
-  componentDidMount() {
-    this.props.competition('MLS');
-  }
-
   render() {
     return (
       <div className="center">
         <h4>Welcome to the soccer bible</h4>
         <p>Select your favorite league</p>
-        <Link to={'/mls'}>
+        <Link to={'/MLS'}>
           <img
             className="emblem"
             src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
             alt="background"
           />
         </Link>
-        {/* <img
-          className="emblem"
-          src={process.env.PUBLIC_URL + '/images/logoPL.png'}
-          alt="background"
-        /> */}
+        <Link to={'/EPL'}>
+          <img
+            className="emblem"
+            src={process.env.PUBLIC_URL + '/images/logoPL.png'}
+            alt="background"
+          />
+        </Link>
         <Footer />
       </div>
     );

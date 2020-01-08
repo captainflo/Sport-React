@@ -2,11 +2,11 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import '../css/MlsLeague.css';
+import '../css/League.css';
 
-class Welcome extends React.Component {
+class League extends React.Component {
   componentDidMount() {
-    this.props.competition('MLS');
+    this.props.competition(this.props.history.location.pathname);
   }
 
   renderTeam = () => {
@@ -14,7 +14,14 @@ class Welcome extends React.Component {
       return this.props.teams.map(team => {
         return (
           <div key={team.Name}>
-            <img className="" src={team.WikipediaLogoUrl} />
+            <img
+              className="team-logo"
+              src={
+                team.WikipediaLogoUrl ||
+                process.env.PUBLIC_URL + '/images/logoMLS.png'
+              }
+              alt="logo"
+            />
             <p>{team.Name}</p>
           </div>
         );
@@ -39,16 +46,10 @@ class Welcome extends React.Component {
   };
 
   render() {
-    console.log(this.props.teams);
     return (
-      <div>
-        <p>MLS League</p>
-        <img
-          className="emblem"
-          src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
-          alt="background"
-        />
-        <p>Team</p>
+      <div className="center">
+        <h3>{this.props.league}</h3>
+        <p>{this.props.teams ? this.props.teams.length : ''} Teams</p>
         {this.renderTeam()}
       </div>
     );
@@ -58,7 +59,8 @@ class Welcome extends React.Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth.authenticated,
-    teams: state.league.MLS.Teams
+    league: state.league.league.Name,
+    teams: state.league.league.Teams
   };
 }
-export default connect(mapStateToProps, actions)(Welcome);
+export default connect(mapStateToProps, actions)(League);

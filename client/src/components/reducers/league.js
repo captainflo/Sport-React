@@ -1,13 +1,13 @@
 import { GET_LEAGUE, LEAGUE_ERROR } from '../actions/types';
 const INITIAL_STATE = {
-  MLS: '',
+  league: '',
   errorMessage: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case GET_LEAGUE:
-      return { ...state, MLS: action.payload || false };
+      return { ...state, league: action.payload || false };
     case LEAGUE_ERROR:
       return { ...state, errorMessage: action.payload };
     default:

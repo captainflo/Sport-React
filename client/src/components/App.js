@@ -12,7 +12,7 @@ import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import UserShow from './user/UserShow';
 import UserEdit from './user/UserEdit';
-import MlsLeague from './pages/MlsLeague';
+import League from './pages/League';
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,7 +31,7 @@ class App extends React.Component {
           <Route path="/signout" component={Signout} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
-          <Route path="/mls" component={MlsLeague} />
+          <Route path="/:league" component={League} />
 
           {this.props.authenticated ? (
             <div>
