@@ -9,16 +9,24 @@ class Welcome extends React.Component {
   render() {
     return (
       <div className="center">
-        <h4>Welcome to the soccer bible</h4>
+        <div className="banner">
+          <div className="container">
+            <h1>Soccer bible</h1>
+            <p>Everything you need to know</p>
+            <a className="btn btn-flat" href="/">
+              Apply now
+            </a>
+          </div>
+        </div>
         <p>Select your favorite league</p>
-        <Link to={'/MLS'}>
+        <Link to={'/league/MLS'}>
           <img
             className="emblem"
             src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
             alt="background"
           />
         </Link>
-        <Link to={'/EPL'}>
+        <Link to={'/league/EPL'}>
           <img
             className="emblem"
             src={process.env.PUBLIC_URL + '/images/logoPL.png'}

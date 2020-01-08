@@ -31,7 +31,7 @@ class App extends React.Component {
           <Route path="/signout" component={Signout} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
-          <Route path="/:league" component={League} />
+          <Route path="/league/:league" component={League} />
 
           {this.props.authenticated ? (
             <div>

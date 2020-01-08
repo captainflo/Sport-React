@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css';
 
 class Footer extends React.Component {
   render() {
@@ -26,12 +27,7 @@ class Footer extends React.Component {
           </div>
         </div>
         <div className="footer-copyright">
-          <div className="container">
-            © 2014 Copyright Text
-            <a className="grey-text text-lighten-4 right" href="#!">
-              More Links
-            </a>
-          </div>
+          <div className="container">© 2014 Copyright Text</div>
         </div>
       </footer>
     );

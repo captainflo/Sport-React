@@ -6,7 +6,8 @@ import '../css/League.css';
 
 class League extends React.Component {
   componentDidMount() {
-    this.props.competition(this.props.history.location.pathname);
+    console.log(this.props);
+    this.props.competition(this.props.match.params.league);
   }
 
   renderTeam = () => {
@@ -18,7 +19,7 @@ class League extends React.Component {
               className="team-logo"
               src={
                 team.WikipediaLogoUrl ||
-                process.env.PUBLIC_URL + '/images/logoMLS.png'
+                process.env.PUBLIC_URL + '/images/logoBall.png'
               }
               alt="logo"
             />
