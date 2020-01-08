@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/Welcome.css';
+import Footer from '../utils/Footer';
 
 class Welcome extends React.Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class Welcome extends React.Component {
           src={process.env.PUBLIC_URL + '/images/logoPL.png'}
           alt="background"
         /> */}
+        <Footer />
       </div>
     );
   }
