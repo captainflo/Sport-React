@@ -12,27 +12,47 @@ class Welcome extends React.Component {
         <div className="banner">
           <div className="container">
             <h1>Soccer bible</h1>
-            <p>Everything you need to know</p>
-            <a className="btn btn-flat" href="/">
-              Apply now
-            </a>
+            <p>Everything you need to know!</p>
           </div>
         </div>
-        <p>Select your favorite league</p>
-        <Link to={'/league/MLS'}>
-          <img
-            className="emblem"
-            src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
-            alt="background"
-          />
-        </Link>
-        <Link to={'/league/EPL'}>
-          <img
-            className="emblem"
-            src={process.env.PUBLIC_URL + '/images/logoPL.png'}
-            alt="background"
-          />
-        </Link>
+        <h5>Select your favorite league</h5>
+        <div className="league-link">
+          <Link to={'/league/MLS'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/EPL'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/logoPL.png'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/13'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/ligue1.png'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/4'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/laliga.png'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/6'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/seria.png'}
+              alt="background"
+            />
+          </Link>
+        </div>
         <Footer />
       </div>
     );
