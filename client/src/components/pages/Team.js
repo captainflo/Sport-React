@@ -37,7 +37,7 @@ class Team extends React.Component {
                 </div>
 
                 <p>Name: {team.strTeam}</p>
-                <p>creation: {team.intFormedYear}</p>
+                <p>Established: {team.intFormedYear}</p>
                 <p>League: {team.strLeague}</p>
                 <p>Country: {team.strCountry}</p>
                 <p className="team-text">{team.strDescriptionEN}</p>
@@ -59,7 +59,10 @@ class Team extends React.Component {
                     {team.strStadiumDescription}
                   </div>
                   <div className="card-action">
-                    <a href={team.strWebsite}>{team.strWebsite}</a>
+                    <a href={team.strWebsite} target="_blank">
+                      {team.strWebsite}
+                    </a>
+                    <span>Capacity: {team.intStadiumCapacity}</span>
                   </div>
                 </div>
               </div>
@@ -92,16 +95,29 @@ class Team extends React.Component {
         <button className="btn" onClick={this.props.history.goBack}>
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
-        {this.props.teams ? this.renderTeamDetails() : ''}
-        <h4>Squad</h4>
-        {this.props.teams ? <Squad team={this.props.teams[0].strTeam} /> : ''}
+
+        {this.props.teams ? (
+          <div>
+            {this.renderTeamDetails()}
+            <h4>Squad</h4>
+            <Squad team={this.props.teams[0].strTeam} />{' '}
+            {/* <img
+              src={
+                this.props.teams[0].strTeamBanner ||
+                process.env.PUBLIC_URL + '/images/logoBall.png'
+              }
+              alt="jersey"
+            />{' '} */}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     teams: state.league.teamDetails.teams
   };

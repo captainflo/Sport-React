@@ -119,7 +119,7 @@ export const deleteUser = (id, callback) => async dispatch => {
   callback(); /* history callback */
 };
 
-///////////////////////////////// Sport IO ///////////////////////////////////////////////////
+///////////////////////////////////////////API Soccer/////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // Get  All Team by League
@@ -149,10 +149,10 @@ export const teamDetail = (id, callback) => async dispatch => {
 };
 
 //Get Player by Team
-export const PlayersByTeam = (id, callback) => async dispatch => {
+export const PlayersByTeam = (team, callback) => async dispatch => {
   try {
     const response = await axios.get(
-      `https://api.sportsdata.io/v3/soccer/scores/json/PlayersByTeam/${id}?key=${keys.api}`
+      `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=${team}`
     );
     dispatch({ type: GET_PLAYERS, payload: response.data });
     callback(); /* history callback */

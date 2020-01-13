@@ -10,8 +10,8 @@ class League extends React.Component {
   }
 
   renderTeam = () => {
-    if (this.props.teams !== undefined) {
-      return this.props.teams.map(team => {
+    if (this.props.league !== undefined) {
+      return this.props.league.map(team => {
         return (
           <Link key={team.idTeam} to={`/team/${team.idTeam}`}>
             <div className="col m4">
@@ -60,10 +60,9 @@ class League extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     auth: state.auth.authenticated,
-    teams: state.league.league.teams
+    league: state.league.league.teams
   };
 }
 export default connect(mapStateToProps, actions)(League);
