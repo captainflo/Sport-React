@@ -1,0 +1,20 @@
+.custom-container{
+  padding: 30px;
+}
+
+.team-logo-details{
+  display: inline-block;
+  max-width: 10%;
+  max-height: 200px;
+
+}
+
+.stadium-text{
+  height: 210px;
+  overflow: auto;
+}
+
+.team-text{
+  height: 330px;
+  overflow: auto;
+}

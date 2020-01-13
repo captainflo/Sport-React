@@ -17,35 +17,35 @@ class Welcome extends React.Component {
         </div>
         <h5>Select your favorite league</h5>
         <div className="league-link">
-          <Link to={'/league/MLS'}>
+          <Link to={'/league/4346'}>
             <img
               className="emblem"
               src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
               alt="background"
             />
           </Link>
-          <Link to={'/league/EPL'}>
+          <Link to={'/league/4328'}>
             <img
               className="emblem"
               src={process.env.PUBLIC_URL + '/images/logoPL.png'}
               alt="background"
             />
           </Link>
-          <Link to={'/league/13'}>
+          <Link to={'/league/4334'}>
             <img
               className="emblem"
               src={process.env.PUBLIC_URL + '/images/ligue1.png'}
               alt="background"
             />
           </Link>
-          <Link to={'/league/4'}>
+          <Link to={'/league/4335'}>
             <img
               className="emblem"
               src={process.env.PUBLIC_URL + '/images/laliga.png'}
               alt="background"
             />
           </Link>
-          <Link to={'/league/6'}>
+          <Link to={'/league/4332'}>
             <img
               className="emblem"
               src={process.env.PUBLIC_URL + '/images/seria.png'}

@@ -6,6 +6,8 @@ import {
   EDIT_USER,
   GET_LEAGUE,
   LEAGUE_ERROR,
+  GET_TEAM,
+  TEAM_ERROR,
   GET_PLAYERS,
   PLAYERS_ERROR
 } from './types';
@@ -117,14 +119,14 @@ export const deleteUser = (id, callback) => async dispatch => {
   callback(); /* history callback */
 };
 
-///////////////////////////////// Sport IO ///////////////////////////////////////////////////
+///////////////////////////////////////////API Soccer/////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-// Get League
+// Get  All Team by League
 export const competition = (league, callback) => async dispatch => {
   try {
     const response = await axios.get(
-      `https://api.sportsdata.io/v3/soccer/scores/json/CompetitionDetails/${league}?key=${keys.api}`
+      `https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=${league}`
     );
     dispatch({ type: GET_LEAGUE, payload: response.data });
     callback(); /* history callback */
@@ -133,11 +135,24 @@ export const competition = (league, callback) => async dispatch => {
   }
 };
 
-//Get Player by Team
-export const PlayersByTeam = (id, callback) => async dispatch => {
+// Get Team
+export const teamDetail = (id, callback) => async dispatch => {
   try {
     const response = await axios.get(
-      `https://api.sportsdata.io/v3/soccer/scores/json/PlayersByTeam/${id}?key=${keys.api}`
+      `https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=${id}`
+    );
+    dispatch({ type: GET_TEAM, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({ type: TEAM_ERROR, payload: 'cannot find the league' });
+  }
+};
+
+//Get Player by Team
+export const PlayersByTeam = (team, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=${team}`
     );
     dispatch({ type: GET_PLAYERS, payload: response.data });
     callback(); /* history callback */

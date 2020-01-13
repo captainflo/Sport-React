@@ -5,3 +5,5 @@ export const GET_LEAGUE = 'get_league';
 export const LEAGUE_ERROR = 'league_error';
 export const GET_PLAYERS = 'get_players';
 export const PLAYERS_ERROR = 'players_error';
+export const GET_TEAM = 'get_team';
+export const TEAM_ERROR = 'team_error';

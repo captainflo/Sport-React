@@ -10,22 +10,22 @@ class League extends React.Component {
   }
 
   renderTeam = () => {
-    if (this.props.teams !== undefined) {
-      return this.props.teams.map(team => {
+    if (this.props.league !== undefined) {
+      return this.props.league.map(team => {
         return (
-          <Link key={team.Name} to={`/team/${team.TeamId}`}>
-            <div>
-              <img
-                className="team-logo"
-                src={
-                  team.WikipediaLogoUrl ||
-                  process.env.PUBLIC_URL + '/images/logoBall.png'
-                }
-                alt="logo"
-              />
-              <p>
-                {team.Name} - {team.TeamId}
-              </p>
+          <Link key={team.idTeam} to={`/team/${team.idTeam}`}>
+            <div className="col m4">
+              <div className="card center">
+                <img
+                  className="team-logo"
+                  src={
+                    team.strTeamBadge ||
+                    process.env.PUBLIC_URL + '/images/logoBall.png'
+                  }
+                  alt="logo"
+                />
+                <p>{team.strTeam}</p>
+              </div>
             </div>
           </Link>
         );
@@ -51,10 +51,9 @@ class League extends React.Component {
 
   render() {
     return (
-      <div className="center">
-        <h3>{this.props.league}</h3>
-        <p>{this.props.teams ? this.props.teams.length : ''} Teams</p>
-        {this.renderTeam()}
+      <div className="container">
+        <h4 className="center">All Teams</h4>
+        <div className="row">{this.renderTeam()}</div>
       </div>
     );
   }
@@ -63,8 +62,7 @@ class League extends React.Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth.authenticated,
-    league: state.league.league.Name,
-    teams: state.league.league.Teams
+    league: state.league.league.teams
   };
 }
 export default connect(mapStateToProps, actions)(League);
