@@ -124,7 +124,7 @@ export const deleteUser = (id, callback) => async dispatch => {
 export const competition = (league, callback) => async dispatch => {
   try {
     const response = await axios.get(
-      `https://api.sportsdata.io/v3/soccer/scores/json/CompetitionDetails/${league}?key=${keys.api}`
+      `https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=${league}`
     );
     dispatch({ type: GET_LEAGUE, payload: response.data });
     callback(); /* history callback */
