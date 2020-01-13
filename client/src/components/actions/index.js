@@ -6,6 +6,8 @@ import {
   EDIT_USER,
   GET_LEAGUE,
   LEAGUE_ERROR,
+  GET_TEAM,
+  TEAM_ERROR,
   GET_PLAYERS,
   PLAYERS_ERROR
 } from './types';
@@ -120,7 +122,7 @@ export const deleteUser = (id, callback) => async dispatch => {
 ///////////////////////////////// Sport IO ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-// Get League
+// Get  All Team by League
 export const competition = (league, callback) => async dispatch => {
   try {
     const response = await axios.get(
@@ -130,6 +132,19 @@ export const competition = (league, callback) => async dispatch => {
     callback(); /* history callback */
   } catch (e) {
     dispatch({ type: LEAGUE_ERROR, payload: 'cannot find the league' });
+  }
+};
+
+// Get Team
+export const teamDetail = (id, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=${id}`
+    );
+    dispatch({ type: GET_TEAM, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({ type: TEAM_ERROR, payload: 'cannot find the league' });
   }
 };
 
