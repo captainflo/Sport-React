@@ -1,12 +1,11 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/League.css';
 
 class League extends React.Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.competition(this.props.match.params.league);
   }
 
@@ -14,17 +13,21 @@ class League extends React.Component {
     if (this.props.teams !== undefined) {
       return this.props.teams.map(team => {
         return (
-          <div key={team.Name}>
-            <img
-              className="team-logo"
-              src={
-                team.WikipediaLogoUrl ||
-                process.env.PUBLIC_URL + '/images/logoBall.png'
-              }
-              alt="logo"
-            />
-            <p>{team.Name}</p>
-          </div>
+          <Link key={team.Name} to={`/team/${team.TeamId}`}>
+            <div>
+              <img
+                className="team-logo"
+                src={
+                  team.WikipediaLogoUrl ||
+                  process.env.PUBLIC_URL + '/images/logoBall.png'
+                }
+                alt="logo"
+              />
+              <p>
+                {team.Name} - {team.TeamId}
+              </p>
+            </div>
+          </Link>
         );
       });
     } else {

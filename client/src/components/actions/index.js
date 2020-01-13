@@ -5,7 +5,9 @@ import {
   AUTH_ERROR,
   EDIT_USER,
   GET_LEAGUE,
-  LEAGUE_ERROR
+  LEAGUE_ERROR,
+  GET_PLAYERS,
+  PLAYERS_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -118,7 +120,7 @@ export const deleteUser = (id, callback) => async dispatch => {
 ///////////////////////////////// Sport IO ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-// MLS League
+// Get League
 export const competition = (league, callback) => async dispatch => {
   try {
     const response = await axios.get(
@@ -128,5 +130,18 @@ export const competition = (league, callback) => async dispatch => {
     callback(); /* history callback */
   } catch (e) {
     dispatch({ type: LEAGUE_ERROR, payload: 'cannot find the league' });
+  }
+};
+
+//Get Player by Team
+export const PlayersByTeam = (id, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://api.sportsdata.io/v3/soccer/scores/json/PlayersByTeam/${id}?key=${keys.api}`
+    );
+    dispatch({ type: GET_PLAYERS, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({ type: PLAYERS_ERROR, payload: 'cannot find the players' });
   }
 };
