@@ -14,6 +14,7 @@ import UserShow from './user/UserShow';
 import UserEdit from './user/UserEdit';
 import League from './pages/League';
 import Team from './pages/Team';
+import Player from './pages/Player';
 
 class App extends React.Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class App extends React.Component {
           <Route path="/signup" component={Signup} />
           <Route path="/league/:league" component={League} />
           <Route path="/team/:id" component={Team} />
+          <Route path="/player/:id" component={Player} />
 
           {this.props.authenticated ? (
             <div>

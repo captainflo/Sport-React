@@ -10,11 +10,15 @@
 }
 
 .stadium-text{
-  height: 210px;
+  max-height: 210px;
   overflow: auto;
 }
 
 .team-text{
   height: 330px;
   overflow: auto;
+}
+
+.back-return{
+  margin-right: 10px;
 }

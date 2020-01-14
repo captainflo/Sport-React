@@ -92,7 +92,10 @@ class Team extends React.Component {
   render() {
     return (
       <div className="custom-container">
-        <button className="btn" onClick={this.props.history.goBack}>
+        <button
+          className="btn right back-return"
+          onClick={this.props.history.goBack}
+        >
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
 
@@ -100,14 +103,7 @@ class Team extends React.Component {
           <div>
             {this.renderTeamDetails()}
             <h4>Squad</h4>
-            <Squad team={this.props.teams[0].strTeam} />{' '}
-            {/* <img
-              src={
-                this.props.teams[0].strTeamBanner ||
-                process.env.PUBLIC_URL + '/images/logoBall.png'
-              }
-              alt="jersey"
-            />{' '} */}
+            <Squad team={this.props.teams[0].strTeam} />
           </div>
         ) : (
           ''

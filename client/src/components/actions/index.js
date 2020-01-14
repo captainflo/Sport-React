@@ -9,7 +9,17 @@ import {
   GET_TEAM,
   TEAM_ERROR,
   GET_PLAYERS,
-  PLAYERS_ERROR
+  PLAYERS_ERROR,
+  GET_PLAYER,
+  PLAYER_ERROR,
+  GET_PLAYER_HONOURS,
+  PLAYER_HONOURS_ERROR,
+  GET_PLAYER_FORMER,
+  PLAYER_FORMER_ERROR,
+  GET_PLAYER_CONTRACT,
+  PLAYER_CONTRACT_ERROR,
+  GET_ALL_LEAGUE,
+  ALL_LEAGUE_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -144,12 +154,12 @@ export const teamDetail = (id, callback) => async dispatch => {
     dispatch({ type: GET_TEAM, payload: response.data });
     callback(); /* history callback */
   } catch (e) {
-    dispatch({ type: TEAM_ERROR, payload: 'cannot find the league' });
+    dispatch({ type: TEAM_ERROR, payload: 'cannot find the team' });
   }
 };
 
 //Get Player by Team
-export const PlayersByTeam = (team, callback) => async dispatch => {
+export const playersByTeam = (team, callback) => async dispatch => {
   try {
     const response = await axios.get(
       `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=${team}`
@@ -158,5 +168,81 @@ export const PlayersByTeam = (team, callback) => async dispatch => {
     callback(); /* history callback */
   } catch (e) {
     dispatch({ type: PLAYERS_ERROR, payload: 'cannot find the players' });
+  }
+};
+
+// Get player details
+export const playerDetails = (id, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${id}`
+    );
+    dispatch({ type: GET_PLAYER, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({ type: PLAYER_ERROR, payload: 'cannot find the player' });
+  }
+};
+
+// Get Player Honours
+export const PlayerHonours = (id, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookuphonors.php?id=${id}`
+    );
+    dispatch({ type: GET_PLAYER_HONOURS, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({
+      type: PLAYER_HONOURS_ERROR,
+      payload: 'cannot find the Honours'
+    });
+  }
+};
+
+// Get player Former Team
+export const playerFormer = (id, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupformerteams.php?id=${id}`
+    );
+    dispatch({ type: GET_PLAYER_FORMER, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({
+      type: PLAYER_FORMER_ERROR,
+      payload: 'cannot find the Former Team'
+    });
+  }
+};
+
+// Get Player Contract
+export const playerContract = (id, callback) => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupcontracts.php?id=${id}`
+    );
+    dispatch({ type: GET_PLAYER_CONTRACT, payload: response.data });
+    callback(); /* history callback */
+  } catch (e) {
+    dispatch({
+      type: PLAYER_CONTRACT_ERROR,
+      payload: 'cannot find the Contract'
+    });
+  }
+};
+
+// Get All League
+export const allLeagues = () => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/all_leagues.php`
+    );
+    dispatch({ type: GET_ALL_LEAGUE, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: ALL_LEAGUE_ERROR,
+      payload: 'cannot find the leagues'
+    });
   }
 };

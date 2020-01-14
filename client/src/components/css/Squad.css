@@ -1,0 +1,11 @@
+.picture-player{
+  width: 100px;
+  height: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  th:first-child {
+    height: 134px;
+    padding-top: 70px;
+  }
+}
