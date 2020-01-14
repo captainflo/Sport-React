@@ -46,6 +46,8 @@ class Player extends React.Component {
           </div>
         );
       });
+    } else {
+      return;
     }
   };
 
@@ -59,6 +61,8 @@ class Player extends React.Component {
           </tr>
         );
       });
+    } else {
+      return;
     }
   };
 
@@ -91,7 +95,7 @@ class Player extends React.Component {
     if (this.props.contracts !== undefined) {
       return this.props.contracts.map(contract => {
         return (
-          <div className="" key={contract.id}>
+          <div key={contract.id}>
             <img
               className="picture-player"
               src={
@@ -107,6 +111,8 @@ class Player extends React.Component {
           </div>
         );
       });
+    } else {
+      return;
     }
   };
 
@@ -119,9 +125,11 @@ class Player extends React.Component {
         >
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
-        {this.renderPlayerDetails()}
+        {this.props.players ? this.renderPlayerDetails() : 'nothing found...'}
         <h3>Contract Player</h3>
-        {this.renderPlayerContracts()}
+        {this.props.contracts
+          ? this.renderPlayerContracts()
+          : 'nothing found...'}
         <div className="row">
           <div className="col s12 m12">
             <h3>Honors</h3>
@@ -133,7 +141,11 @@ class Player extends React.Component {
                     <th>Season</th>
                   </tr>
                 </thead>
-                <tbody>{this.renderPlayerHonors()}</tbody>
+                <tbody>
+                  {this.props.honors
+                    ? this.renderPlayerHonors()
+                    : 'nothing found...'}
+                </tbody>
               </table>
             </div>
           </div>
@@ -148,7 +160,11 @@ class Player extends React.Component {
                     <th>Season</th>
                   </tr>
                 </thead>
-                <tbody>{this.renderPlayerFormer()}</tbody>
+                <tbody>
+                  {this.props.formers
+                    ? this.renderPlayerFormer()
+                    : 'nothing found...'}
+                </tbody>
               </table>
             </div>
           </div>
