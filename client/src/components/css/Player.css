@@ -1,0 +1,9 @@
+.table-honor{
+  max-height: 300px;
+  overflow: auto;
+}
+
+.picture-player-details{
+  width: 300px;
+  height: 300px;
+}

@@ -15,10 +15,11 @@ class Player extends React.Component {
     if (this.props.players !== undefined) {
       return this.props.players.map(player => {
         return (
-          <div key={player.idPlayer}>
-            <p>
+          <div className="row" key={player.idPlayer}>
+            <h3>{player.strPlayer}</h3>
+            <div>
               <img
-                className="picture-player"
+                className="picture-player-details"
                 src={
                   player.strCutout ||
                   player.strThumb ||
@@ -27,17 +28,21 @@ class Player extends React.Component {
                 }
                 alt="logo"
               />
-            </p>
-            <p>{player.strPlayer}</p>
-            <p>{player.strNationality}</p>
-            <p>{player.dateBorn}</p>
-            <p>{player.strBirthLocation}</p>
-            <p>{player.strPosition}</p>
-            <p>{player.strDescriptionEN}</p>
-            <p>{player.strHeight}</p>
-            <p>{player.strWeight}</p>
-            <p>{player.strNumber}</p>
-            <p>{player.strSigning}</p>
+            </div>
+            <div>
+              <p>{player.strDescriptionEN}</p>
+              <p>Nationality: {player.strNationality}</p>
+              <p>
+                Born: in {player.dateBorn} at {player.strBirthLocation}
+              </p>
+
+              <p>Position: {player.strPosition}</p>
+
+              <p>Height: {player.strHeight}</p>
+              <p>Weight: {player.strWeight}</p>
+              <p>Number: {player.strNumber}</p>
+              <p>Transfert: {player.strSigning}</p>
+            </div>
           </div>
         );
       });
@@ -48,11 +53,10 @@ class Player extends React.Component {
     if (this.props.honors !== undefined) {
       return this.props.honors.map(honor => {
         return (
-          <div key={honor.id}>
-            <p>
-              {honor.strHonour} - {honor.strSeason}
-            </p>
-          </div>
+          <tr key={honor.id}>
+            <td>{honor.strHonour}</td>
+            <td>{honor.strSeason}</td>
+          </tr>
         );
       });
     }
@@ -62,8 +66,8 @@ class Player extends React.Component {
     if (this.props.formers !== undefined) {
       return this.props.formers.map(former => {
         return (
-          <div key={former.id}>
-            <div className="">
+          <tr key={former.id}>
+            <td>
               <img
                 className="picture-player"
                 src={
@@ -72,12 +76,12 @@ class Player extends React.Component {
                 }
                 alt="logo"
               />
-              <p> {former.strFormerTeam}</p>
-              <p>
-                {former.strJoined} - {former.strDeparted}{' '}
-              </p>
-            </div>
-          </div>
+            </td>
+            <td> {former.strFormerTeam}</td>
+            <td>
+              {former.strJoined} - {former.strDeparted}{' '}
+            </td>
+          </tr>
         );
       });
     }
@@ -115,12 +119,40 @@ class Player extends React.Component {
         >
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
-        {this.renderPlayerContracts()}
         {this.renderPlayerDetails()}
-        <h3>Honors</h3>
-        {this.renderPlayerHonors()}
-        <h3>Former</h3>
-        {this.renderPlayerFormer()}
+        <h3>Contract Player</h3>
+        {this.renderPlayerContracts()}
+        <div className="row">
+          <div className="col s12 m12">
+            <h3>Honors</h3>
+            <div className="table-honor">
+              <table className="responsive-table">
+                <thead>
+                  <tr>
+                    <th>Trophy</th>
+                    <th>Season</th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderPlayerHonors()}</tbody>
+              </table>
+            </div>
+          </div>
+          <div className="col s12 m12">
+            <h3>Former</h3>
+            <div>
+              <table className="responsive-table">
+                <thead>
+                  <tr>
+                    <th>Badge</th>
+                    <th>Name</th>
+                    <th>Season</th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderPlayerFormer()}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

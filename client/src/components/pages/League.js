@@ -53,7 +53,7 @@ class League extends React.Component {
     return (
       <div className="container">
         <h4 className="center">All Teams</h4>
-        <div className="row">{this.renderTeam()}</div>
+        <div className="row center">{this.renderTeam()}</div>
       </div>
     );
   }

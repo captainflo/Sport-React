@@ -56,7 +56,6 @@ class Squad extends React.Component {
               <th>Position</th>
             </tr>
           </thead>
-
           <tbody>{this.renderPlayers()}</tbody>
         </table>
       </div>
