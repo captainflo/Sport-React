@@ -28,20 +28,38 @@ class Player extends React.Component {
                 }
                 alt="logo"
               />
+              <div className="text-player">
+                {this.props.contracts
+                  ? this.renderPlayerContracts()
+                  : 'nothing found...'}
+                <p>{player.strDescriptionEN}</p>
+              </div>
             </div>
-            <div>
-              <p>{player.strDescriptionEN}</p>
-              <p>Nationality: {player.strNationality}</p>
+            <div className="box-player-details">
               <p>
-                Born: in {player.dateBorn} at {player.strBirthLocation}
+                <i className="fas fa-globe-americas"></i>{' '}
+                {player.strNationality}
+              </p>
+              <p>
+                <i className="fas fa-map-marked-alt"></i> Born in{' '}
+                {player.dateBorn} at {player.strBirthLocation}
               </p>
 
-              <p>Position: {player.strPosition}</p>
-
-              <p>Height: {player.strHeight}</p>
-              <p>Weight: {player.strWeight}</p>
-              <p>Number: {player.strNumber}</p>
-              <p>Transfert: {player.strSigning}</p>
+              <p>
+                <i class="fas fa-ruler-horizontal"></i> {player.strHeight}
+              </p>
+              <p>
+                <i className="fas fa-weight-hanging"></i> {player.strWeight}
+              </p>
+              <p>
+                <i className="fas fa-running"></i> {player.strPosition}
+              </p>
+              <p>
+                <i className="fas fa-tshirt"></i> {player.strNumber}
+              </p>
+              <p>
+                <i className="fas fa-dollar-sign"></i> {player.strSigning}
+              </p>
             </div>
           </div>
         );
@@ -104,7 +122,6 @@ class Player extends React.Component {
               }
               alt="logo"
             />
-
             <p>
               {contract.strYearStart} - {contract.strYearEnd}
             </p>
@@ -126,31 +143,9 @@ class Player extends React.Component {
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
         {this.props.players ? this.renderPlayerDetails() : 'nothing found...'}
-        <h3>Contract Player</h3>
-        {this.props.contracts
-          ? this.renderPlayerContracts()
-          : 'nothing found...'}
         <div className="row">
           <div className="col s12 m12">
-            <h3>Honors</h3>
-            <div className="table-honor">
-              <table className="responsive-table">
-                <thead>
-                  <tr>
-                    <th>Trophy</th>
-                    <th>Season</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.props.honors
-                    ? this.renderPlayerHonors()
-                    : 'nothing found...'}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className="col s12 m12">
-            <h3>Former</h3>
+            <h3>Former Team</h3>
             <div>
               <table className="responsive-table">
                 <thead>
@@ -163,6 +158,24 @@ class Player extends React.Component {
                 <tbody>
                   {this.props.formers
                     ? this.renderPlayerFormer()
+                    : 'nothing found...'}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="col s12 m12">
+            <h3>Career Honours </h3>
+            <div className="table-honor">
+              <table className="responsive-table">
+                <thead>
+                  <tr>
+                    <th>Trophy</th>
+                    <th>Season</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.honors
+                    ? this.renderPlayerHonors()
                     : 'nothing found...'}
                 </tbody>
               </table>

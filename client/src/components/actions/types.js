@@ -17,3 +17,7 @@ export const GET_TEAM = 'get_team';
 export const TEAM_ERROR = 'team_error';
 export const GET_ALL_LEAGUE = 'get_all_league';
 export const ALL_LEAGUE_ERROR = 'all_league_error';
+export const GET_NEXT_EVENT_TEAM = 'get_next_event_team';
+export const NEXT_EVENT_TEAM_ERROR = 'next_event_team_error';
+export const GET_LAST_EVENT_TEAM = 'get_last_event_team';
+export const LAST_EVENT_TEAM_ERROR = 'last_event_team_error';

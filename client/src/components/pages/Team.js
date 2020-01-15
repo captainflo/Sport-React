@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Squad from './Squad';
 import '../css/Team.css';
+import Schedule from './Schedule';
 
 class Team extends React.Component {
   componentDidMount() {
@@ -102,6 +103,8 @@ class Team extends React.Component {
         {this.props.teams ? (
           <div>
             {this.renderTeamDetails()}
+            <h4>Schedule</h4>
+            <Schedule team={this.props.teams[0].idTeam} />
             <h4>Squad</h4>
             <Squad team={this.props.teams[0].strTeam} />
           </div>

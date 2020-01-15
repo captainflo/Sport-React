@@ -19,7 +19,11 @@ import {
   GET_PLAYER_CONTRACT,
   PLAYER_CONTRACT_ERROR,
   GET_ALL_LEAGUE,
-  ALL_LEAGUE_ERROR
+  ALL_LEAGUE_ERROR,
+  GET_NEXT_EVENT_TEAM,
+  NEXT_EVENT_TEAM_ERROR,
+  GET_LAST_EVENT_TEAM,
+  LAST_EVENT_TEAM_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -242,6 +246,36 @@ export const allLeagues = () => async dispatch => {
   } catch (e) {
     dispatch({
       type: ALL_LEAGUE_ERROR,
+      payload: 'cannot find the leagues'
+    });
+  }
+};
+
+// Get Next 5 Events by Team Id
+export const next5EventsByTeam = id => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${id}`
+    );
+    dispatch({ type: GET_NEXT_EVENT_TEAM, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: NEXT_EVENT_TEAM_ERROR,
+      payload: 'cannot find the leagues'
+    });
+  }
+};
+
+// Last 5 Events by Team Id
+export const last5EventsByTeam = id => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=${id}`
+    );
+    dispatch({ type: GET_LAST_EVENT_TEAM, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: LAST_EVENT_TEAM_ERROR,
       payload: 'cannot find the leagues'
     });
   }
