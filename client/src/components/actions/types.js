@@ -21,3 +21,5 @@ export const GET_NEXT_EVENT_TEAM = 'get_next_event_team';
 export const NEXT_EVENT_TEAM_ERROR = 'next_event_team_error';
 export const GET_LAST_EVENT_TEAM = 'get_last_event_team';
 export const LAST_EVENT_TEAM_ERROR = 'last_event_team_error';
+export const GET_TEAM_IMAGE = 'get_team_image';
+export const TEAM_IMAGE_ERROR = 'team_image_error';

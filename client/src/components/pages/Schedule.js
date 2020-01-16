@@ -5,6 +5,9 @@ import * as actions from '../actions';
 import '../css/Team.css';
 
 class Schedule extends React.Component {
+  state = {
+    imageHome: []
+  };
   componentDidMount() {
     this.props.next5EventsByTeam(this.props.team);
     this.props.last5EventsByTeam(this.props.team);
@@ -20,10 +23,10 @@ class Schedule extends React.Component {
   renderNextEvent = () => {
     if (this.props.nextEvents !== undefined) {
       return this.props.nextEvents.map(nextEvent => {
+        this.props.teamImage(nextEvent.idHomeTeam);
         return (
-          <div>
-            <p>Match Day {nextEvent.intRound}</p>
-            {nextEvent.strEvent}
+          <div key={nextEvent.idEvent}>
+            <p>{nextEvent.strEvent}</p>
           </div>
         );
       });
@@ -50,9 +53,11 @@ class Schedule extends React.Component {
     if (this.props.lastEvents !== undefined) {
       return this.props.lastEvents.map(lastEvent => {
         return (
-          <div>
-            {lastEvent.strHomeTeam} {lastEvent.intHomeScore} -{' '}
-            {lastEvent.intAwayScore} {lastEvent.strAwayTeam}
+          <div key={lastEvent.idEvent}>
+            <p>
+              {lastEvent.strHomeTeam} {lastEvent.intHomeScore} -{' '}
+              {lastEvent.intAwayScore} {lastEvent.strAwayTeam}
+            </p>
           </div>
         );
       });
@@ -77,10 +82,15 @@ class Schedule extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.renderNextEvent()}
-        <p>last</p>
-        {this.renderLastEvent()}
+      <div className="row center">
+        <div className="col m6 s12">
+          <h5>Next 5 Games</h5>
+          {this.renderNextEvent()}
+        </div>
+        <div className="col m6 s12">
+          <h5>Last 5 Games</h5>
+          {this.renderLastEvent()}
+        </div>
       </div>
     );
   }
