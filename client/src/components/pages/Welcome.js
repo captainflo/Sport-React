@@ -52,6 +52,20 @@ class Welcome extends React.Component {
               alt="background"
             />
           </Link>
+          <Link to={'/league/4387'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/nba.jpg'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/4391'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/nfl.png'}
+              alt="background"
+            />
+          </Link>
         </div>
         <Footer />
       </div>

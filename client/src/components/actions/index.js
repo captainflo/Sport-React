@@ -23,9 +23,7 @@ import {
   GET_NEXT_EVENT_TEAM,
   NEXT_EVENT_TEAM_ERROR,
   GET_LAST_EVENT_TEAM,
-  LAST_EVENT_TEAM_ERROR,
-  GET_TEAM_IMAGE,
-  TEAM_IMAGE_ERROR
+  LAST_EVENT_TEAM_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -161,18 +159,6 @@ export const teamDetail = (id, callback) => async dispatch => {
     callback(); /* history callback */
   } catch (e) {
     dispatch({ type: TEAM_ERROR, payload: 'cannot find the team' });
-  }
-};
-
-// Get Team Image
-export const teamImage = id => async dispatch => {
-  try {
-    const response = await axios.get(
-      `https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=${id}`
-    );
-    dispatch({ type: GET_TEAM_IMAGE, payload: response.data });
-  } catch (e) {
-    dispatch({ type: TEAM_IMAGE_ERROR, payload: 'cannot find the team' });
   }
 };
 

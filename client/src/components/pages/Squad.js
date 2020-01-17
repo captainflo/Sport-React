@@ -23,7 +23,7 @@ class Squad extends React.Component {
             <Link to={`/player/${player.idPlayer}`}>
               <td>
                 <img
-                  className="picture-player"
+                  className="picture-player hoverable"
                   src={
                     player.strRender ||
                     player.strCutout ||

@@ -11,6 +11,12 @@ class Team extends React.Component {
     this.props.teamDetail(this.props.match.params.id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.teams !== this.props.teams) {
+      this.props.teamDetail(this.props.match.params.id);
+    }
+  }
+
   renderTeamDetails = () => {
     if (this.props.teams !== undefined) {
       return this.props.teams.map(team => {
@@ -104,7 +110,10 @@ class Team extends React.Component {
           <div>
             {this.renderTeamDetails()}
             <h4>Schedule</h4>
-            <Schedule team={this.props.teams[0].idTeam} />
+            <Schedule
+              team={this.props.teams[0].idTeam}
+              idLeague={this.props.teams[0].idLeague}
+            />
             <h4>Squad</h4>
             <Squad team={this.props.teams[0].strTeam} />
           </div>

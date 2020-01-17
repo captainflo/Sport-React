@@ -1,0 +1,30 @@
+.container-flex {
+  display: flex;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team-logo-schedule{
+  max-width: 30%;
+  max-height: 200px;
+}
+
+.container-flex p{
+  max-width: 150px;
+  max-height: 200px;
+}
+
+.date-schedule{
+  font-size: 11px;
+  margin-bottom: -7px;
+  color: gray;
+}
+
+.score{
+  display: block;
+  margin-bottom: -3px;
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}

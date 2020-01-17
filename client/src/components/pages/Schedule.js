@@ -1,34 +1,68 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import '../css/Team.css';
+import '../css/Schedule.css';
 
 class Schedule extends React.Component {
-  state = {
-    imageHome: []
-  };
   componentDidMount() {
     this.props.next5EventsByTeam(this.props.team);
     this.props.last5EventsByTeam(this.props.team);
+    this.props.competition(this.props.idLeague);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.team !== this.props.team) {
       this.props.next5EventsByTeam(this.props.team);
       this.props.last5EventsByTeam(this.props.team);
+      this.props.competition(this.props.idLeague);
     }
   }
+
+  renderImage = id => {
+    if (this.props.leagues !== undefined) {
+      for (let i = 0; i < this.props.leagues.length; i++) {
+        const idTeam = this.props.leagues[i].idTeam;
+        if (id === idTeam) {
+          return (
+            <Link to={`/team/${idTeam}`}>
+              <img
+                className="team-logo-schedule hoverable"
+                src={
+                  this.props.leagues[i].strTeamBadge ||
+                  process.env.PUBLIC_URL + '/images/logoBall.png'
+                }
+                alt="jersey"
+              />
+            </Link>
+          );
+        }
+      }
+    }
+  };
 
   renderNextEvent = () => {
     if (this.props.nextEvents !== undefined) {
       return this.props.nextEvents.map(nextEvent => {
-        this.props.teamImage(nextEvent.idHomeTeam);
-        return (
-          <div key={nextEvent.idEvent}>
-            <p>{nextEvent.strEvent}</p>
-          </div>
-        );
+        if (this.props.leagues !== undefined) {
+          for (let i = 0; i < this.props.leagues.length; i++) {
+            const idLeague = this.props.leagues[i].idLeague;
+            if (nextEvent.idLeague == idLeague) {
+              return (
+                <div>
+                  <p className="date-schedule">
+                    Day {nextEvent.intRound} - {nextEvent.dateEvent}
+                  </p>
+                  <div className="container-flex" key={nextEvent.idEvent}>
+                    <p>{this.renderImage(nextEvent.idHomeTeam)}</p>
+                    <p>{nextEvent.strEvent}</p>
+                    <p>{this.renderImage(nextEvent.idAwayTeam)}</p>
+                  </div>
+                </div>
+              );
+            }
+          }
+        }
       });
     } else {
       return (
@@ -52,14 +86,31 @@ class Schedule extends React.Component {
   renderLastEvent = () => {
     if (this.props.lastEvents !== undefined) {
       return this.props.lastEvents.map(lastEvent => {
-        return (
-          <div key={lastEvent.idEvent}>
-            <p>
-              {lastEvent.strHomeTeam} {lastEvent.intHomeScore} -{' '}
-              {lastEvent.intAwayScore} {lastEvent.strAwayTeam}
-            </p>
-          </div>
-        );
+        if (this.props.leagues !== undefined) {
+          for (let i = 0; i < this.props.leagues.length; i++) {
+            const idLeague = this.props.leagues[i].idLeague;
+            if (lastEvent.idLeague == idLeague) {
+              return (
+                <div>
+                  <p className="date-schedule">
+                    Day {lastEvent.intRound} - {lastEvent.dateEvent}
+                  </p>
+                  <div className="container-flex" key={lastEvent.idEvent}>
+                    <p>{this.renderImage(lastEvent.idHomeTeam)}</p>
+
+                    <div>
+                      <p className="score">
+                        {lastEvent.intHomeScore} - {lastEvent.intAwayScore}
+                      </p>
+                      {lastEvent.strEvent}
+                    </div>
+                    <p>{this.renderImage(lastEvent.idAwayTeam)}</p>
+                  </div>
+                </div>
+              );
+            }
+          }
+        }
       });
     } else {
       return (
@@ -84,12 +135,12 @@ class Schedule extends React.Component {
     return (
       <div className="row center">
         <div className="col m6 s12">
-          <h5>Next 5 Games</h5>
-          {this.renderNextEvent()}
+          <h6>Next Games of {this.props.teamDetails}</h6>
+          {this.props.nextEvents ? this.renderNextEvent() : 'no game season...'}
         </div>
         <div className="col m6 s12">
-          <h5>Last 5 Games</h5>
-          {this.renderLastEvent()}
+          <h6>Last Games {this.props.teamDetails}</h6>
+          {this.props.lastEvents ? this.renderLastEvent() : 'no schedule...'}
         </div>
       </div>
     );
@@ -97,8 +148,9 @@ class Schedule extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
+    teamDetails: state.league.teamDetails.teams[0].strLeague,
+    leagues: state.league.league.teams,
     nextEvents: state.league.nextEventTeam.events,
     lastEvents: state.league.lastEventTeam.results
   };

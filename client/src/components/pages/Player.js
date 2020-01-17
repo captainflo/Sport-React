@@ -11,6 +11,15 @@ class Player extends React.Component {
     this.props.playerContract(this.props.match.params.id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.players !== this.props.players) {
+      this.props.PlayerHonours(this.props.match.params.id);
+      this.props.playerFormer(this.props.match.params.id);
+      this.props.playerDetails(this.props.match.params.id);
+      this.props.playerContract(this.props.match.params.id);
+    }
+  }
+
   renderPlayerDetails = () => {
     if (this.props.players !== undefined) {
       return this.props.players.map(player => {
@@ -46,7 +55,7 @@ class Player extends React.Component {
               </p>
 
               <p>
-                <i class="fas fa-ruler-horizontal"></i> {player.strHeight}
+                <i className="fas fa-ruler-horizontal"></i> {player.strHeight}
               </p>
               <p>
                 <i className="fas fa-weight-hanging"></i> {player.strWeight}
@@ -188,7 +197,6 @@ class Player extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     players: state.league.playerDetails.players,
     honors: state.league.playerHonours.honors,
