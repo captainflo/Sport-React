@@ -23,7 +23,9 @@ import {
   GET_NEXT_EVENT_TEAM,
   NEXT_EVENT_TEAM_ERROR,
   GET_LAST_EVENT_TEAM,
-  LAST_EVENT_TEAM_ERROR
+  LAST_EVENT_TEAM_ERROR,
+  GET_LEAGUE_DETAILS,
+  LEAGUE_DETAILS_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -146,6 +148,21 @@ export const competition = (league, callback) => async dispatch => {
     callback(); /* history callback */
   } catch (e) {
     dispatch({ type: LEAGUE_ERROR, payload: 'cannot find the league' });
+  }
+};
+
+//Get League Details
+export const leagueDetails = id => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=${id}`
+    );
+    dispatch({ type: GET_LEAGUE_DETAILS, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: LEAGUE_DETAILS_ERROR,
+      payload: 'cannot find the league details'
+    });
   }
 };
 

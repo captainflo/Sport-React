@@ -21,3 +21,5 @@ export const GET_NEXT_EVENT_TEAM = 'get_next_event_team';
 export const NEXT_EVENT_TEAM_ERROR = 'next_event_team_error';
 export const GET_LAST_EVENT_TEAM = 'get_last_event_team';
 export const LAST_EVENT_TEAM_ERROR = 'last_event_team_error';
+export const GET_LEAGUE_DETAILS = 'get_league_details';
+export const LEAGUE_DETAILS_ERROR = 'league_details_error';

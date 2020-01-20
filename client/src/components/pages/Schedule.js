@@ -47,7 +47,7 @@ class Schedule extends React.Component {
         if (this.props.leagues !== undefined) {
           for (let i = 0; i < this.props.leagues.length; i++) {
             const idLeague = this.props.leagues[i].idLeague;
-            if (nextEvent.idLeague == idLeague) {
+            if (nextEvent.idLeague === idLeague) {
               return (
                 <div>
                   <p className="date-schedule">
@@ -89,7 +89,7 @@ class Schedule extends React.Component {
         if (this.props.leagues !== undefined) {
           for (let i = 0; i < this.props.leagues.length; i++) {
             const idLeague = this.props.leagues[i].idLeague;
-            if (lastEvent.idLeague == idLeague) {
+            if (lastEvent.idLeague === idLeague) {
               return (
                 <div>
                   <p className="date-schedule">

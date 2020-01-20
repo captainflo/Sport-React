@@ -11,11 +11,11 @@ class Welcome extends React.Component {
       <div className="center">
         <div className="banner">
           <div className="container">
-            <h1>Soccer bible</h1>
+            <h1>Wiki Sport</h1>
             <p>Everything you need to know!</p>
           </div>
         </div>
-        <h5>Select your favorite league</h5>
+        <h5>Select your favorite Sport</h5>
         <div className="league-link">
           <Link to={'/league/4346'}>
             <img
@@ -60,6 +60,20 @@ class Welcome extends React.Component {
             />
           </Link>
           <Link to={'/league/4391'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/nfl.png'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/4424'}>
+            <img
+              className="emblem"
+              src={process.env.PUBLIC_URL + '/images/nfl.png'}
+              alt="background"
+            />
+          </Link>
+          <Link to={'/league/4380'}>
             <img
               className="emblem"
               src={process.env.PUBLIC_URL + '/images/nfl.png'}

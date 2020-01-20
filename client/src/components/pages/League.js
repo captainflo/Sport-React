@@ -6,8 +6,91 @@ import '../css/League.css';
 
 class League extends React.Component {
   componentDidMount() {
+    this.props.leagueDetails(this.props.match.params.league);
     this.props.competition(this.props.match.params.league);
   }
+
+  renderLeagueDetails = () => {
+    if (this.props.Details !== undefined) {
+      const league = this.props.Details[0];
+      console.log(league);
+      return (
+        <div>
+          <p>{league.strLeague}</p>
+          <p>{league.intFormedYear}</p>
+          <p>Location: {league.strCountry}</p>
+          <a href={league.strWebsite}>website</a>
+          <a ref={league.strFacebook} href={league.strFacebook}>
+            facebook
+          </a>
+          <a href={league.strTwitter}>twitter</a>
+          <p>{league.strDescriptionEN}</p>
+          <img
+            className="team-logo"
+            src={
+              league.strFanart1 ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strFanart2 ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strFanart3 ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strFanart4 ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strBadge || process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strLogo || process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strTrophy ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strPoster ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+        </div>
+      );
+    }
+  };
 
   renderTeam = () => {
     if (this.props.league !== undefined) {
@@ -53,6 +136,7 @@ class League extends React.Component {
     return (
       <div className="container">
         <h4 className="center">All Teams</h4>
+        {this.renderLeagueDetails()}
         <div className="row center">{this.renderTeam()}</div>
       </div>
     );
@@ -62,7 +146,8 @@ class League extends React.Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth.authenticated,
-    league: state.league.league.teams
+    league: state.league.league.teams,
+    Details: state.league.leagueDetails.leagues
   };
 }
 export default connect(mapStateToProps, actions)(League);

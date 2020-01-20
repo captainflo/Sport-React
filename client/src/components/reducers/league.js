@@ -18,10 +18,13 @@ import {
   GET_NEXT_EVENT_TEAM,
   NEXT_EVENT_TEAM_ERROR,
   GET_LAST_EVENT_TEAM,
-  LAST_EVENT_TEAM_ERROR
+  LAST_EVENT_TEAM_ERROR,
+  GET_LEAGUE_DETAILS,
+  LEAGUE_DETAILS_ERROR
 } from '../actions/types';
 const INITIAL_STATE = {
   league: '',
+  leagueDetails: '',
   teamDetails: '',
   nextEventTeam: '',
   lastEventTeam: '',
@@ -31,8 +34,7 @@ const INITIAL_STATE = {
   playerFormer: '',
   playerContract: '',
   errorMessage: '',
-  allLeagues: '',
-  imageTeam: ''
+  allLeagues: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -76,6 +78,10 @@ export default function(state = INITIAL_STATE, action) {
     case GET_ALL_LEAGUE:
       return { ...state, allLeagues: action.payload || false };
     case ALL_LEAGUE_ERROR:
+      return { ...state, errorMessage: action.payload };
+    case GET_LEAGUE_DETAILS:
+      return { ...state, leagueDetails: action.payload || false };
+    case LEAGUE_DETAILS_ERROR:
       return { ...state, errorMessage: action.payload };
 
     default:
