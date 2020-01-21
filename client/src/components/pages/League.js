@@ -13,11 +13,26 @@ class League extends React.Component {
   renderLeagueDetails = () => {
     if (this.props.Details !== undefined) {
       const league = this.props.Details[0];
-      console.log(league);
       return (
         <div>
-          <p>{league.strLeague}</p>
-          <p>{league.intFormedYear}</p>
+          <div>{this.renderTeam()}</div>
+          <img
+            className="team-logo"
+            src={
+              league.strBadge || process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <img
+            className="team-logo"
+            src={
+              league.strTrophy ||
+              process.env.PUBLIC_URL + '/images/logoBall.png'
+            }
+            alt="logo"
+          />
+          <p>Name: {league.strLeague}</p>
+          <p>Established: {league.intFormedYear}</p>
           <p>Location: {league.strCountry}</p>
           <a href={league.strWebsite}>website</a>
           <a ref={league.strFacebook} href={league.strFacebook}>
@@ -57,25 +72,11 @@ class League extends React.Component {
             }
             alt="logo"
           />
-          <img
-            className="team-logo"
-            src={
-              league.strBadge || process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
+
           <img
             className="team-logo"
             src={
               league.strLogo || process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <img
-            className="team-logo"
-            src={
-              league.strTrophy ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
             }
             alt="logo"
           />
@@ -97,19 +98,14 @@ class League extends React.Component {
       return this.props.league.map(team => {
         return (
           <Link key={team.idTeam} to={`/team/${team.idTeam}`}>
-            <div className="col m4">
-              <div className="card center">
-                <img
-                  className="team-logo"
-                  src={
-                    team.strTeamBadge ||
-                    process.env.PUBLIC_URL + '/images/logoBall.png'
-                  }
-                  alt="logo"
-                />
-                <p>{team.strTeam}</p>
-              </div>
-            </div>
+            <img
+              className="team-logo hoverable"
+              src={
+                team.strTeamBadge ||
+                process.env.PUBLIC_URL + '/images/logoBall.png'
+              }
+              alt="logo"
+            />
           </Link>
         );
       });
@@ -134,16 +130,19 @@ class League extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h4 className="center">All Teams</h4>
+      <div className="custom-container">
         {this.renderLeagueDetails()}
-        <div className="row center">{this.renderTeam()}</div>
+        <div className="row center">
+          <h4>All Teams</h4>
+          {this.renderTeam()}
+        </div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     auth: state.auth.authenticated,
     league: state.league.league.teams,
