@@ -119,6 +119,12 @@ class League extends React.Component {
     return (
       <div>
         <div className="banner-team center">{this.renderTeam()}</div>
+        <button
+          className="btn right back-return"
+          onClick={this.props.history.goBack}
+        >
+          <i className="far fa-arrow-alt-circle-left"></i> Return
+        </button>
         <div className="custom-container">{this.renderLeagueDetails()}</div>
       </div>
     );

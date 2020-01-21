@@ -33,7 +33,7 @@ class Player extends React.Component {
                   player.strCutout ||
                   player.strThumb ||
                   player.strRender ||
-                  process.env.PUBLIC_URL + '/images/logoBall.png'
+                  process.env.PUBLIC_URL + '/images/player.png'
                 }
                 alt="logo"
               />

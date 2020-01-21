@@ -28,7 +28,7 @@ class Squad extends React.Component {
                     player.strRender ||
                     player.strCutout ||
                     player.strThumb ||
-                    process.env.PUBLIC_URL + '/images/logoBall.png'
+                    process.env.PUBLIC_URL + '/images/player.png'
                   }
                   alt="logo"
                 />

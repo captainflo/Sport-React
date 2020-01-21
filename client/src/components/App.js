@@ -15,6 +15,7 @@ import UserEdit from './user/UserEdit';
 import League from './pages/League';
 import Team from './pages/Team';
 import Player from './pages/Player';
+import Soccer from './pages/Soccer';
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ class App extends React.Component {
           <Header />
           <Route exact path="/" component={Welcome} />
           <Route path="/signout" component={Signout} />
+          <Route path="/soccer" component={Soccer} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
           <Route path="/league/:league" component={League} />

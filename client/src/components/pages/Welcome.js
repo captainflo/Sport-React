@@ -4,81 +4,34 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/Welcome.css';
 import Footer from '../utils/Footer';
+import Slider from '../utils/Slider';
 
 class Welcome extends React.Component {
   render() {
     return (
       <div className="center">
-        <div className="banner">
-          <div className="container">
-            <h1>Wiki Sport</h1>
-            <p>Everything you need to know!</p>
-          </div>
-        </div>
+        <Slider />
         <h5>Select your favorite Sport</h5>
-        <div className="league-link">
-          <Link to={'/league/4346'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/logoMLS.png'}
-              alt="background"
-            />
-          </Link>
-          <Link to={'/league/4328'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/logoPL.png'}
-              alt="background"
-            />
-          </Link>
-          <Link to={'/league/4334'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/ligue1.png'}
-              alt="background"
-            />
-          </Link>
-          <Link to={'/league/4335'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/laliga.png'}
-              alt="background"
-            />
-          </Link>
-          <Link to={'/league/4332'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/seria.png'}
-              alt="background"
-            />
+        <div className="box-sport-logo">
+          <Link to={'/soccer'}>
+            <i className="far fa-futbol logo-sport hoverable"></i>
+            <p>Soccer</p>
           </Link>
           <Link to={'/league/4387'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/nba.jpg'}
-              alt="background"
-            />
+            <i className="fas fa-basketball-ball logo-sport hoverable"></i>
+            <p>Basketball</p>
           </Link>
           <Link to={'/league/4391'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/nfl.png'}
-              alt="background"
-            />
+            <i className="fas fa-football-ball logo-sport hoverable"></i>
+            <p>Football</p>
           </Link>
           <Link to={'/league/4424'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/nfl.png'}
-              alt="background"
-            />
+            <i className="fas fa-baseball-ball logo-sport hoverable"></i>
+            <p>Baseball</p>
           </Link>
           <Link to={'/league/4380'}>
-            <img
-              className="emblem"
-              src={process.env.PUBLIC_URL + '/images/nfl.png'}
-              alt="background"
-            />
+            <i className="fas fa-hockey-puck logo-sport hoverable"></i>
+            <p>Hockey</p>
           </Link>
         </div>
         <Footer />

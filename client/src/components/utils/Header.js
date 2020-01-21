@@ -40,7 +40,8 @@ class Header extends React.Component {
         <nav>
           <div className="nav-wrapper">
             <Link className="brand-logo" to="/">
-              <i style={{ paddingLeft: '25px' }} className="far fa-futbol"></i>
+              <i style={{ paddingLeft: '25px' }} className="fas fa-running"></i>{' '}
+              WikiSport
             </Link>
             <a href="#/" data-target="slide-out" className="sidenav-trigger">
               <i className="material-icons">menu</i>

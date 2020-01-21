@@ -29,7 +29,7 @@ class Team extends React.Component {
                     className="jersey right"
                     src={
                       team.strTeamJersey ||
-                      process.env.PUBLIC_URL + '/images/logoBall.png'
+                      process.env.PUBLIC_URL + '/images/jersey.png'
                     }
                     alt="jersey"
                   />
@@ -55,7 +55,7 @@ class Team extends React.Component {
                       className=""
                       src={
                         team.strStadiumThumb ||
-                        process.env.PUBLIC_URL + '/images/logoBall.png'
+                        process.env.PUBLIC_URL + '/images/stadium.png'
                       }
                       alt="stadium"
                     />
