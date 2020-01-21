@@ -15,79 +15,66 @@ class League extends React.Component {
       const league = this.props.Details[0];
       return (
         <div>
-          <div>{this.renderTeam()}</div>
-          <img
-            className="team-logo"
-            src={
-              league.strBadge || process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <img
-            className="team-logo"
-            src={
-              league.strTrophy ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <p>Name: {league.strLeague}</p>
-          <p>Established: {league.intFormedYear}</p>
-          <p>Location: {league.strCountry}</p>
-          <a href={league.strWebsite}>website</a>
-          <a ref={league.strFacebook} href={league.strFacebook}>
-            facebook
-          </a>
-          <a href={league.strTwitter}>twitter</a>
-          <p>{league.strDescriptionEN}</p>
-          <img
-            className="team-logo"
-            src={
-              league.strFanart1 ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <img
-            className="team-logo"
-            src={
-              league.strFanart2 ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <img
-            className="team-logo"
-            src={
-              league.strFanart3 ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <img
-            className="team-logo"
-            src={
-              league.strFanart4 ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-
-          <img
-            className="team-logo"
-            src={
-              league.strLogo || process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
-          <img
-            className="team-logo"
-            src={
-              league.strPoster ||
-              process.env.PUBLIC_URL + '/images/logoBall.png'
-            }
-            alt="logo"
-          />
+          <div className="row">
+            <div className="col m3 s12">
+              <div className="card">
+                <div className="card-custom">
+                  <img
+                    className="logo-league"
+                    src={
+                      league.strBadge ||
+                      process.env.PUBLIC_URL + '/images/logoBall.png'
+                    }
+                    alt="logo"
+                  />
+                  <hr></hr>
+                  <p>Name: {league.strLeague}</p>
+                  <p>Established: {league.intFormedYear}</p>
+                  <p>Location: {league.strCountry}</p>
+                  <p>
+                    <a
+                      href={'https://' + league.strWebsite}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fas fa-laptop"></i> {league.strLeague}
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href={'https://' + league.strFacebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fab fa-facebook-square"></i> Facebook
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href={'https://' + league.strTwitter}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <i className="fab fa-twitter-square"></i> Twitter
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col m9 s12">
+              <div className="text-details">
+                <img
+                  className="trophy"
+                  src={
+                    league.strTrophy ||
+                    process.env.PUBLIC_URL + '/images/logoBall.png'
+                  }
+                  alt="logo"
+                />
+                <p>{league.strDescriptionEN}</p>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }
@@ -130,12 +117,9 @@ class League extends React.Component {
 
   render() {
     return (
-      <div className="custom-container">
-        {this.renderLeagueDetails()}
-        <div className="row center">
-          <h4>All Teams</h4>
-          {this.renderTeam()}
-        </div>
+      <div>
+        <div className="banner-team center">{this.renderTeam()}</div>
+        <div className="custom-container">{this.renderLeagueDetails()}</div>
       </div>
     );
   }

@@ -39,8 +39,8 @@ class App extends React.Component {
 
           {this.props.authenticated ? (
             <div>
-              <Route exact path="/user/:id" component={UserShow} />
-              <Route exact path="/user/edit/:id" component={UserEdit} />
+              <Route path="/user/:id" component={UserShow} />
+              <Route path="/user/edit/:id" component={UserEdit} />
             </div>
           ) : (
             ''

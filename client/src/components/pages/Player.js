@@ -122,7 +122,7 @@ class Player extends React.Component {
     if (this.props.contracts !== undefined) {
       return this.props.contracts.map(contract => {
         return (
-          <div key={contract.id}>
+          <div key={contract.id} className="box-contract">
             <img
               className="picture-player"
               src={

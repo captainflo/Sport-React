@@ -134,11 +134,11 @@ class Schedule extends React.Component {
   render() {
     return (
       <div className="row center">
-        <div className="col m6 s12">
+        <div className="col m6 s12 schedule-box">
           <h6>Next Games of {this.props.teamDetails}</h6>
           {this.props.nextEvents ? this.renderNextEvent() : 'no game season...'}
         </div>
-        <div className="col m6 s12">
+        <div className="col m6 s12 schedule-box">
           <h6>Last Games {this.props.teamDetails}</h6>
           {this.props.lastEvents ? this.renderLastEvent() : 'no schedule...'}
         </div>

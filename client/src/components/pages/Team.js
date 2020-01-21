@@ -26,7 +26,7 @@ class Team extends React.Component {
               <div className="col s12 m7">
                 <div style={{ marginTop: '10px' }}>
                   <img
-                    className="team-logo right"
+                    className="jersey right"
                     src={
                       team.strTeamJersey ||
                       process.env.PUBLIC_URL + '/images/logoBall.png'
@@ -42,7 +42,6 @@ class Team extends React.Component {
                     alt="badge"
                   />
                 </div>
-
                 <p>Name: {team.strTeam}</p>
                 <p>Established: {team.intFormedYear}</p>
                 <p>League: {team.strLeague}</p>
@@ -66,8 +65,12 @@ class Team extends React.Component {
                     {team.strStadiumDescription}
                   </div>
                   <div className="card-action">
-                    <a href={team.strWebsite} target="_blank">
-                      {team.strWebsite}
+                    <a
+                      href={'https://' + team.strWebsite}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fas fa-laptop"></i> {team.strTeam}
                     </a>
                     <span>Capacity: {team.intStadiumCapacity}</span>
                   </div>

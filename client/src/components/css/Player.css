@@ -18,3 +18,14 @@
 .box-player-details{
   clear: left;
 }
+
+
+
+.box-contract{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.box-contract p {
+  margin-left: 10px;
+}

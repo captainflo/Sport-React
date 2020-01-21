@@ -4,3 +4,37 @@
   margin-right: 1px;
 }
 
+.banner-team{
+  border: 1px solid black;
+  padding: 20px;
+  background-color: black;
+}
+
+.logo-league{
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.trophy{
+  width: 12%;
+  float: left;
+  margin-right: 10px;
+}
+
+.card-custom{
+  padding: 30px;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.card-custom hr{
+  margin-top: 20px;
+}
+
+.text-details{
+  overflow: auto;
+  max-height: 419px 
+}
