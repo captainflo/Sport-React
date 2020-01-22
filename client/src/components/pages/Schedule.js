@@ -167,14 +167,6 @@ class Schedule extends React.Component {
   render() {
     return (
       <div className="row center">
-        <div className="col m6 s12 schedule-box">
-          <h6>Next Games of {this.props.teamDetails}</h6>
-          {this.props.nextEvents ? this.renderNextEvent() : 'no game season...'}
-        </div>
-        <div className="col m6 s12 schedule-box">
-          <h6>Last Games {this.props.teamDetails}</h6>
-          {this.props.lastEvents ? this.renderLastEvent() : 'no schedule...'}
-        </div>
         {this.props.idLeague !== '4346' &&
         this.props.idLeague !== '4387' &&
         this.props.idLeague !== '4391' &&
@@ -182,7 +174,29 @@ class Schedule extends React.Component {
         this.props.idLeague !== '4380' &&
         this.props.eventLeague
           ? this.renderAllEventTeam()
-          : 'nothing found...'}
+          : ''}
+        {this.props.idLeague == '4346' ||
+        this.props.idLeague == '4387' ||
+        this.props.idLeague == '4391' ||
+        this.props.idLeague == '4424' ||
+        this.props.idLeague == '4380' ? (
+          <div className="row center">
+            <div className="col m6 s12 schedule-box">
+              <h6>Next Games of {this.props.teamDetails}</h6>
+              {this.props.nextEvents
+                ? this.renderNextEvent()
+                : 'no game season...'}
+            </div>
+            <div className="col m6 s12 schedule-box">
+              <h6>Last Games {this.props.teamDetails}</h6>
+              {this.props.lastEvents
+                ? this.renderLastEvent()
+                : 'no schedule...'}
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
