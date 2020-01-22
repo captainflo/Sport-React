@@ -25,7 +25,11 @@ import {
   GET_LAST_EVENT_TEAM,
   LAST_EVENT_TEAM_ERROR,
   GET_LEAGUE_DETAILS,
-  LEAGUE_DETAILS_ERROR
+  LEAGUE_DETAILS_ERROR,
+  GET_EVENT_LEAGUE,
+  EVENT_LEAGUE_ERROR,
+  GET_TABLE_LEAGUE,
+  TABLE_LEAGUE_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -294,6 +298,36 @@ export const last5EventsByTeam = id => async dispatch => {
     dispatch({
       type: LAST_EVENT_TEAM_ERROR,
       payload: 'cannot find the leagues'
+    });
+  }
+};
+
+// Get Table League by Season
+export const tableLeague = id => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${id}`
+    );
+    dispatch({ type: GET_TABLE_LEAGUE, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: TABLE_LEAGUE_ERROR,
+      payload: 'cannot find the table league'
+    });
+  }
+};
+
+// Get Event by league Season
+export const eventByLeague = id => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventsseason.php?id=${id}`
+    );
+    dispatch({ type: GET_EVENT_LEAGUE, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: EVENT_LEAGUE_ERROR,
+      payload: 'cannot find the event leagues'
     });
   }
 };

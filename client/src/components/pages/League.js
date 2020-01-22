@@ -6,6 +6,7 @@ import '../css/League.css';
 
 class League extends React.Component {
   componentDidMount() {
+    this.props.tableLeague(this.props.match.params.league);
     this.props.leagueDetails(this.props.match.params.league);
     this.props.competition(this.props.match.params.league);
   }
@@ -115,6 +116,49 @@ class League extends React.Component {
     }
   };
 
+  renderImage = id => {
+    if (this.props.league !== undefined) {
+      for (let i = 0; i < this.props.league.length; i++) {
+        const idTeam = this.props.league[i].idTeam;
+        if (id === idTeam) {
+          return (
+            <Link to={`/team/${idTeam}`}>
+              <img
+                className="team-logo-table hoverable"
+                src={
+                  this.props.league[i].strTeamBadge ||
+                  process.env.PUBLIC_URL + '/images/logoBall.png'
+                }
+                alt="jersey"
+              />
+            </Link>
+          );
+        }
+      }
+    }
+  };
+
+  renderTableLeague = () => {
+    if (this.props.tables !== undefined) {
+      return this.props.tables.map(table => {
+        return (
+          <tr>
+            <td>{this.renderImage(table.teamid)}</td>
+            <td>{table.name}</td>
+            <td>{table.played}</td>
+            <td>{table.goalsfor}</td>
+            <td>{table.goalsagainst}</td>
+            <td>{table.goalsdifference}</td>
+            <td>{table.win}</td>
+            <td>{table.draw}</td>
+            <td>{table.loss}</td>
+            <td>{table.total}</td>
+          </tr>
+        );
+      });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -125,7 +169,39 @@ class League extends React.Component {
         >
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
-        <div className="custom-container">{this.renderLeagueDetails()}</div>
+        <div className="custom-container">
+          {this.renderLeagueDetails()}
+          <div>
+            <h4>Table Season</h4>
+            <table className="table-league centered responsive-table">
+              <thead>
+                <tr>
+                  <th>Emblem</th>
+                  <th>Name</th>
+                  <th>Played</th>
+                  <th>Goals for</th>
+                  <th>goals Against</th>
+                  <th>goals Difference</th>
+                  <th>Win</th>
+                  <th>Draw</th>
+                  <th>Loss</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {this.props.match.params.league !== '4346' &&
+                this.props.match.params.league !== '4387' &&
+                this.props.match.params.league !== '4391' &&
+                this.props.match.params.league !== '4424' &&
+                this.props.match.params.league !== '4380' &&
+                this.props.tables
+                  ? this.renderTableLeague()
+                  : 'nothing found...'}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
@@ -136,7 +212,8 @@ function mapStateToProps(state) {
   return {
     auth: state.auth.authenticated,
     league: state.league.league.teams,
-    Details: state.league.leagueDetails.leagues
+    Details: state.league.leagueDetails.leagues,
+    tables: state.league.tableLeague.table
   };
 }
 export default connect(mapStateToProps, actions)(League);

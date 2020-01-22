@@ -9,6 +9,7 @@ class Schedule extends React.Component {
     this.props.next5EventsByTeam(this.props.team);
     this.props.last5EventsByTeam(this.props.team);
     this.props.competition(this.props.idLeague);
+    this.props.eventByLeague(this.props.idLeague);
   }
 
   componentDidUpdate(prevProps) {
@@ -16,6 +17,8 @@ class Schedule extends React.Component {
       this.props.next5EventsByTeam(this.props.team);
       this.props.last5EventsByTeam(this.props.team);
       this.props.competition(this.props.idLeague);
+      this.props.eventByLeague(this.props.idLeague);
+      this.renderImage();
     }
   }
 
@@ -38,6 +41,36 @@ class Schedule extends React.Component {
           );
         }
       }
+    }
+  };
+
+  renderAllEventTeam = () => {
+    if (this.props.eventLeague !== undefined) {
+      return this.props.eventLeague.map(event => {
+        if (
+          event.idHomeTeam === this.props.team ||
+          event.idAwayTeam === this.props.team
+        ) {
+          return (
+            <div>
+              <p className="date-schedule">
+                Day {event.intRound} - {event.dateEvent}
+              </p>
+              <div className="container-flex" key={event.idEvent}>
+                <p>{this.renderImage(event.idHomeTeam)}</p>
+
+                <div>
+                  <p className="score">
+                    {event.intHomeScore} - {event.intAwayScore}
+                  </p>
+                  {event.strEvent}
+                </div>
+                <p>{this.renderImage(event.idAwayTeam)}</p>
+              </div>
+            </div>
+          );
+        }
+      });
     }
   };
 
@@ -142,17 +175,27 @@ class Schedule extends React.Component {
           <h6>Last Games {this.props.teamDetails}</h6>
           {this.props.lastEvents ? this.renderLastEvent() : 'no schedule...'}
         </div>
+        {this.props.idLeague !== '4346' &&
+        this.props.idLeague !== '4387' &&
+        this.props.idLeague !== '4391' &&
+        this.props.idLeague !== '4424' &&
+        this.props.idLeague !== '4380' &&
+        this.props.eventLeague
+          ? this.renderAllEventTeam()
+          : 'nothing found...'}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     teamDetails: state.league.teamDetails.teams[0].strLeague,
     leagues: state.league.league.teams,
     nextEvents: state.league.nextEventTeam.events,
-    lastEvents: state.league.lastEventTeam.results
+    lastEvents: state.league.lastEventTeam.results,
+    eventLeague: state.league.eventLeague.events
   };
 }
 export default connect(mapStateToProps, actions)(Schedule);

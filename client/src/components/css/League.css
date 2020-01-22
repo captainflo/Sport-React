@@ -1,3 +1,11 @@
+.team-logo-table{
+  max-width: 20%;
+}
+
+.table-league td:first-child {
+  width: 150px;
+}
+
 .team-logo{
   display: inline-block;
   max-width: 3%;
@@ -37,4 +45,12 @@
 .text-details{
   overflow: auto;
   max-height: 419px 
+}
+
+
+@media only screen and (max-width: 600px) {
+  .table-league th:first-child {
+    height: 64px;
+    padding-top: 20px;
+  }
 }

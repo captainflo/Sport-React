@@ -23,3 +23,7 @@ export const GET_LAST_EVENT_TEAM = 'get_last_event_team';
 export const LAST_EVENT_TEAM_ERROR = 'last_event_team_error';
 export const GET_LEAGUE_DETAILS = 'get_league_details';
 export const LEAGUE_DETAILS_ERROR = 'league_details_error';
+export const GET_EVENT_LEAGUE = 'get_event_league';
+export const EVENT_LEAGUE_ERROR = 'event_league_error';
+export const GET_TABLE_LEAGUE = 'get_table_league';
+export const TABLE_LEAGUE_ERROR = 'table_league_error';

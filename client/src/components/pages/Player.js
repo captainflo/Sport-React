@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../actions';
 import '../css/Player.css';
 
@@ -33,7 +34,7 @@ class Player extends React.Component {
                   player.strCutout ||
                   player.strThumb ||
                   player.strRender ||
-                  process.env.PUBLIC_URL + '/images/player.png'
+                  process.env.PUBLIC_URL + '/images/player.jpg'
                 }
                 alt="logo"
               />
@@ -99,14 +100,16 @@ class Player extends React.Component {
         return (
           <tr key={former.id}>
             <td>
-              <img
-                className="picture-player"
-                src={
-                  former.strTeamBadge ||
-                  process.env.PUBLIC_URL + '/images/logoBall.png'
-                }
-                alt="logo"
-              />
+              <Link to={`/team/${former.idFormerTeam}`}>
+                <img
+                  className="picture-player hoverable"
+                  src={
+                    former.strTeamBadge ||
+                    process.env.PUBLIC_URL + '/images/logoBall.png'
+                  }
+                  alt="logo"
+                />
+              </Link>
             </td>
             <td> {former.strFormerTeam}</td>
             <td>
@@ -137,8 +140,6 @@ class Player extends React.Component {
           </div>
         );
       });
-    } else {
-      return;
     }
   };
 
