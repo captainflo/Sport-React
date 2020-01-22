@@ -30,6 +30,10 @@
 }
 
 .schedule-box{
-  max-height: 300px;
+  max-height: 430px;
   overflow: auto;
+}
+
+.canvasjs-chart-toolbar{
+  display: none !important;
 }

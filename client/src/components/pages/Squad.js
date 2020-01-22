@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/Squad.css';
+import _ from 'lodash';
 
 class Squad extends React.Component {
   componentDidMount() {
@@ -17,7 +18,12 @@ class Squad extends React.Component {
 
   renderPlayers = () => {
     if (this.props.players !== undefined) {
-      return this.props.players.map(player => {
+      const sortedUsers = _.orderBy(
+        this.props.players,
+        [player => player.strPosition],
+        ['Manager', 'Centre Back']
+      );
+      return sortedUsers.map(player => {
         return (
           <tr key={player.idPlayer}>
             <Link to={`/player/${player.idPlayer}`}>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/Schedule.css';
+import ChartWithAnimation from '../utils/dashbord/ChartWithAnimation';
 
 class Schedule extends React.Component {
   componentDidMount() {
@@ -10,6 +11,7 @@ class Schedule extends React.Component {
     this.props.last5EventsByTeam(this.props.team);
     this.props.competition(this.props.idLeague);
     this.props.eventByLeague(this.props.idLeague);
+    this.props.tableLeague(this.props.idLeague);
   }
 
   componentDidUpdate(prevProps) {
@@ -18,6 +20,7 @@ class Schedule extends React.Component {
       this.props.last5EventsByTeam(this.props.team);
       this.props.competition(this.props.idLeague);
       this.props.eventByLeague(this.props.idLeague);
+      this.props.tableLeague(this.props.idLeague);
       this.renderImage();
     }
   }
@@ -52,7 +55,7 @@ class Schedule extends React.Component {
           event.idAwayTeam === this.props.team
         ) {
           return (
-            <div>
+            <div key={event.idEvent}>
               <p className="date-schedule">
                 Day {event.intRound} - {event.dateEvent}
               </p>
@@ -66,6 +69,29 @@ class Schedule extends React.Component {
                   {event.strEvent}
                 </div>
                 <p>{this.renderImage(event.idAwayTeam)}</p>
+              </div>
+            </div>
+          );
+        }
+      });
+    }
+  };
+
+  renderChart = () => {
+    if (this.props.tables !== undefined) {
+      return this.props.tables.map(table => {
+        if (table.teamid === this.props.team) {
+          return (
+            <div>
+              <h6>Game played {table.played}</h6>
+              <p></p>
+              <div key={table.name}>
+                <ChartWithAnimation
+                  win={table.win}
+                  draw={table.draw}
+                  loss={table.loss}
+                  played={table.played}
+                />
               </div>
             </div>
           );
@@ -124,7 +150,7 @@ class Schedule extends React.Component {
             const idLeague = this.props.leagues[i].idLeague;
             if (lastEvent.idLeague === idLeague) {
               return (
-                <div>
+                <div key={lastEvent.idTeam}>
                   <p className="date-schedule">
                     Day {lastEvent.intRound} - {lastEvent.dateEvent}
                   </p>
@@ -172,15 +198,23 @@ class Schedule extends React.Component {
         this.props.idLeague !== '4391' &&
         this.props.idLeague !== '4424' &&
         this.props.idLeague !== '4380' &&
-        this.props.eventLeague
-          ? this.renderAllEventTeam()
-          : ''}
-        {this.props.idLeague == '4346' ||
-        this.props.idLeague == '4387' ||
-        this.props.idLeague == '4391' ||
-        this.props.idLeague == '4424' ||
-        this.props.idLeague == '4380' ? (
-          <div className="row center">
+        this.props.eventLeague ? (
+          <div>
+            <div className="col m4 s12 schedule-box">
+              {this.renderAllEventTeam()}
+            </div>
+            <div className="col m8 s12 ">{this.renderChart()}</div>
+          </div>
+        ) : (
+          ''
+        )}
+
+        {this.props.idLeague === '4346' ||
+        this.props.idLeague === '4387' ||
+        this.props.idLeague === '4391' ||
+        this.props.idLeague === '4424' ||
+        this.props.idLeague === '4380' ? (
+          <div>
             <div className="col m6 s12 schedule-box">
               <h6>Next Games of {this.props.teamDetails}</h6>
               {this.props.nextEvents
@@ -209,7 +243,8 @@ function mapStateToProps(state) {
     leagues: state.league.league.teams,
     nextEvents: state.league.nextEventTeam.events,
     lastEvents: state.league.lastEventTeam.results,
-    eventLeague: state.league.eventLeague.events
+    eventLeague: state.league.eventLeague.events,
+    tables: state.league.tableLeague.table
   };
 }
 export default connect(mapStateToProps, actions)(Schedule);

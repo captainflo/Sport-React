@@ -142,7 +142,7 @@ class League extends React.Component {
     if (this.props.tables !== undefined) {
       return this.props.tables.map(table => {
         return (
-          <tr>
+          <tr key={table.teamid}>
             <td>{this.renderImage(table.teamid)}</td>
             <td>{table.name}</td>
             <td>{table.played}</td>
