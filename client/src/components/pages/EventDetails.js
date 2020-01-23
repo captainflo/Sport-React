@@ -274,7 +274,6 @@ class EventDetails extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     detailGame: state.league.eventDetails.events,
     leagues: state.league.league.teams

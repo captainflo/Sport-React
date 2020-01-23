@@ -11,6 +11,14 @@ class League extends React.Component {
     this.props.competition(this.props.match.params.league);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.league !== this.props.league) {
+      this.props.tableLeague(this.props.match.params.league);
+      this.props.leagueDetails(this.props.match.params.league);
+      this.props.competition(this.props.match.params.league);
+    }
+  }
+
   renderLeagueDetails = () => {
     if (this.props.Details !== undefined) {
       const league = this.props.Details[0];

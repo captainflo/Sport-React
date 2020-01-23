@@ -262,7 +262,6 @@ class Schedule extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     teamDetails: state.league.teamDetails.teams[0].strLeague,
     leagues: state.league.league.teams,
