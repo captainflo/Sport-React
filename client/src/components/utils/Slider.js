@@ -85,7 +85,7 @@ class Slider extends React.Component {
           {/* Soccer */}
           <li>
             <img
-              src={process.env.PUBLIC_URL + '/images/bannerSoccer.jpg'}
+              src={process.env.PUBLIC_URL + '/images/BannerSoccer.jpg'}
               alt="banner"
             />
             <div class="caption bottom-align">

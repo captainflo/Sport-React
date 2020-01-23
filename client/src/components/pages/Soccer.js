@@ -9,7 +9,6 @@ class Squad extends React.Component {
       <div className="container">
         <div className="row center">
           <h4>Soccer Leagues</h4>
-
           <div className="col m3 s6">
             <Link to={'/league/4346'}>
               <img
@@ -31,7 +30,7 @@ class Squad extends React.Component {
           <div className="col m3 s6">
             <Link to={'/league/4335'}>
               <img
-                className="logo-soccer-league hoverable"
+                className="logo-soccer-league-liga hoverable"
                 src={process.env.PUBLIC_URL + '/images/laLiga.png'}
                 alt="logo"
               />
