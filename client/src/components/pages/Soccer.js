@@ -31,7 +31,7 @@ class Squad extends React.Component {
             <Link to={'/league/4335'}>
               <img
                 className="logo-soccer-league-liga hoverable"
-                src={process.env.PUBLIC_URL + '/images/laLiga.png'}
+                src={process.env.PUBLIC_URL + '/images/spain.png'}
                 alt="logo"
               />
             </Link>
