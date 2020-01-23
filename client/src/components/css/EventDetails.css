@@ -3,6 +3,8 @@
   width: 306px;
   height: 523px;
   color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .player-pitch{
@@ -13,19 +15,31 @@
 .box-pitch{
   padding-top: 2px;
 }
-.box-pitch p {
-  margin-top: 47px;
+.box-pitch div {
+  margin-top: 0;
 }
 
-.box-pitch p:first-child {
+.box-pitch div:first-child {
   margin-top: 50px;
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
-.box-pitch p:last-child {
-  margin-top: 85px;
+.box-pitch div:last-child {
+  margin-top: 25px;
 }
 
 .text-player-pitch{
-  font-size: 10px;
+  font-size: 9px;
   color: 'grey';
+}
+
+.team-logo-event{
+  width: 5%;
+}
+
+.line-up-sub{
+  display: inline;
+}
+
+.goal-event{
+  margin-right: 15px;
 }

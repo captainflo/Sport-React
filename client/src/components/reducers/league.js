@@ -102,7 +102,7 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, errorMessage: action.payload };
     case GET_EVENT_DETAILS:
       return { ...state, eventDetails: action.payload || false };
-    case EVENT_LEAGUE_ERROR:
+    case EVENT_DETAILS_ERROR:
       return { ...state, errorMessage: action.payload };
 
     default:

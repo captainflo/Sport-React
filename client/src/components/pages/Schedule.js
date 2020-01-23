@@ -20,7 +20,6 @@ class Schedule extends React.Component {
       this.props.last5EventsByTeam(this.props.team);
       this.props.competition(this.props.idLeague);
       this.props.eventByLeague(this.props.idLeague);
-      this.props.eventByLeague(this.props.idLeague);
       this.props.tableLeague(this.props.idLeague);
       this.renderImage();
     }
@@ -116,9 +115,17 @@ class Schedule extends React.Component {
                   </p>
                   <div className="container-flex" key={nextEvent.idEvent}>
                     <p>{this.renderImage(nextEvent.idHomeTeam)}</p>
-                    <Link to={`/eventDetails/${nextEvent.idEvent}`}>
+                    {this.props.idLeague !== '4387' &&
+                    this.props.idLeague !== '4391' &&
+                    this.props.idLeague !== '4424' &&
+                    this.props.idLeague !== '4380' ? (
+                      <Link to={`/eventDetails/${nextEvent.idEvent}`}>
+                        <p>{nextEvent.strEvent}</p>
+                      </Link>
+                    ) : (
                       <p>{nextEvent.strEvent}</p>
-                    </Link>
+                    )}
+
                     <p>{this.renderImage(nextEvent.idAwayTeam)}</p>
                   </div>
                 </div>
@@ -160,14 +167,27 @@ class Schedule extends React.Component {
                   </p>
                   <div className="container-flex" key={lastEvent.idEvent}>
                     <p>{this.renderImage(lastEvent.idHomeTeam)}</p>
-                    <Link to={`/eventDetails/${lastEvent.idEvent}`}>
+                    {this.props.idLeague !== '4387' &&
+                    this.props.idLeague !== '4391' &&
+                    this.props.idLeague !== '4424' &&
+                    this.props.idLeague !== '4380' ? (
+                      <Link to={`/eventDetails/${lastEvent.idEvent}`}>
+                        <div>
+                          <p className="score">
+                            {lastEvent.intHomeScore} - {lastEvent.intAwayScore}
+                          </p>
+                          {lastEvent.strEvent}
+                        </div>
+                      </Link>
+                    ) : (
                       <div>
                         <p className="score">
                           {lastEvent.intHomeScore} - {lastEvent.intAwayScore}
                         </p>
                         {lastEvent.strEvent}
                       </div>
-                    </Link>
+                    )}
+
                     <p>{this.renderImage(lastEvent.idAwayTeam)}</p>
                   </div>
                 </div>

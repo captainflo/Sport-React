@@ -348,3 +348,18 @@ export const eventDetails = id => async dispatch => {
     });
   }
 };
+
+//Get player by name
+export const playerByName = name => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${name}`
+    );
+    dispatch({ type: GET_PLAYER, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: PLAYER_ERROR,
+      payload: 'cannot find the player'
+    });
+  }
+};

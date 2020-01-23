@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/EventDetails.css';
@@ -30,6 +30,7 @@ class EventDetails extends React.Component {
           <div>
             <div>
               <iframe
+                title="video"
                 width="500"
                 height="300"
                 src={url}
@@ -37,8 +38,9 @@ class EventDetails extends React.Component {
               ></iframe>
               <div>
                 Other Link: {''}
-                <a href={newUrl} target="_blank">
-                  <i className="fab fa-youtube"></i> Youtube
+                <a href={newUrl} target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-youtube" rel="noopener noreferrer"></i>{' '}
+                  Youtube
                 </a>
               </div>
             </div>
@@ -57,11 +59,37 @@ class EventDetails extends React.Component {
         return (
           <div>
             Video Link {''}
-            <a href={newUrl} target="_blank">
+            <a href={newUrl} target="_blank" rel="noopener noreferrer">
               <i className="fab fa-youtube"></i> Youtube
             </a>
           </div>
         );
+      }
+    }
+  };
+
+  renderImage = id => {
+    if (this.props.detailGame !== undefined) {
+      const game = this.props.detailGame[0];
+      this.props.competition(game.idLeague);
+      if (this.props.leagues !== undefined) {
+        for (let i = 0; i < this.props.leagues.length; i++) {
+          const idTeam = this.props.leagues[i].idTeam;
+          if (id === idTeam) {
+            return (
+              <Link to={`/team/${idTeam}`}>
+                <img
+                  className="team-logo-event hoverable"
+                  src={
+                    this.props.leagues[i].strTeamBadge ||
+                    process.env.PUBLIC_URL + '/images/logoBall.png'
+                  }
+                  alt="jersey"
+                />
+              </Link>
+            );
+          }
+        }
       }
     }
   };
@@ -75,7 +103,7 @@ class EventDetails extends React.Component {
   renderLineUp = newArray => {
     return newArray.map(player => {
       return (
-        <div className="player-pitch">
+        <div key={player} className="player-pitch">
           <i className="fas fa-user"></i>
           <span className="text-player-pitch"> {player}</span>
         </div>
@@ -83,68 +111,163 @@ class EventDetails extends React.Component {
     });
   };
 
+  // Line Up Substitutes
+  lineUpFunctionSub = lineUp => {
+    const newArray = lineUp.split(';');
+    newArray.pop();
+    return <ul>Substitutes: {this.renderLineUpSub(newArray)}</ul>;
+  };
+
+  renderLineUpSub = newArray => {
+    return newArray.map(player => {
+      return <li key={player}>{player}</li>;
+    });
+  };
+
+  // Goal
+  goalTeamFunction = lineUp => {
+    const newArray = lineUp.split(';');
+    newArray.pop();
+    return <div>{this.renderGoalTeam(newArray)}</div>;
+  };
+
+  renderGoalTeam = newArray => {
+    return newArray.map(player => {
+      return (
+        <span className="goal-event" key={player}>
+          {player} <i className="fas fa-futbol"></i>
+        </span>
+      );
+    });
+  };
+
+  // Card Player
+  cardTeamFunction = lineUp => {
+    const newArray = lineUp.split(';');
+    newArray.pop();
+    return <div>{this.renderCardTeam(newArray)}</div>;
+  };
+
+  renderCardTeam = newArray => {
+    return newArray.map(player => {
+      return (
+        <span className="goal-event" key={player}>
+          {player}
+        </span>
+      );
+    });
+  };
+
   renderMatchDay = () => {
     if (this.props.detailGame !== undefined) {
       const game = this.props.detailGame[0];
-      {
-        return (
-          <div>
-            <div>
-              {game.strEvent}
-              <p>
-                Day {game.intRound} - {game.dateEvent}
-              </p>
-              <p>
-                {game.intHomeScore} - {game.intAwayScore}
-              </p>
-            </div>
-            <h1>Home Team</h1>
-            <div> Goal: {game.strHomeGoalDetails}</div>
-            <div> Yellow Card: {game.strHomeYellowCards}</div>
-            <div>
-              {game.strHomeRedCards ? (
-                <div>Red Card: {game.strHomeRedCards}</div>
-              ) : (
-                ''
-              )}
-            </div>
-            <div className="pitch center">
-              <div className="box-pitch">
-                <p>{this.lineUpFunction(game.strHomeLineupGoalkeeper)}</p>
-                <p>{this.lineUpFunction(game.strHomeLineupDefense)}</p>
-                <p> {this.lineUpFunction(game.strHomeLineupMidfield)}</p>
-                <p>{this.lineUpFunction(game.strHomeLineupForward)}</p>
+      return (
+        <div>
+          {/* Score info */}
+          <div className="center">
+            <h4>
+              {this.renderImage(game.idHomeTeam)} {game.strEvent}{' '}
+              {this.renderImage(game.idAwayTeam)}
+            </h4>
+            <h5>
+              {game.intHomeScore} -{game.intAwayScore}
+            </h5>
+          </div>
+          <p className="center">
+            <i className="fas fa-sun"></i> Day {game.intRound} -{' '}
+            <i className="fas fa-calendar-day"></i> {game.dateEvent}
+          </p>
+          {/* Team Home */}
+          <div className="row center">
+            <div className="col m6 s12">
+              <h5>Home Team</h5>
+              <div>{this.goalTeamFunction(game.strHomeGoalDetails)}</div>
+              <div className="pitch center">
+                <div className="box-pitch">
+                  <div>{this.lineUpFunction(game.strHomeLineupGoalkeeper)}</div>
+                  <div>{this.lineUpFunction(game.strHomeLineupDefense)}</div>
+                  <div> {this.lineUpFunction(game.strHomeLineupMidfield)}</div>
+                  <div>{this.lineUpFunction(game.strHomeLineupForward)}</div>
+                </div>
+              </div>
+              <div>{this.lineUpFunctionSub(game.strHomeLineupSubstitutes)}</div>
+
+              <div>
+                {' '}
+                {game.strHomeYellowCards ? (
+                  <div>
+                    Yellow Card:
+                    {this.cardTeamFunction(game.strHomeYellowCards)}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <div>
+                {game.strHomeRedCards ? (
+                  <div>
+                    Red Card: {this.cardTeamFunction(game.strHomeRedCards)}
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
-            <p>{game.strHomeLineupSubstitutes}</p>
-            <h1>Away Team</h1>
-            <div> Yellow Card: {game.strAwayYellowCards}</div>
-            <div>Red Card: {game.strAwayRedCards}</div>
-            <div> {game.strAwayGoalDetails}</div>
-            <div>
-              <div> {game.strAwayLineupGoalkeeper}</div>
-              <div> {game.strAwayLineupDefense}</div>
-              <div> {game.strAwayLineupMidfield}</div>
-              <div> {game.strAwayLineupForward}</div>
-              <div> {game.strAwayLineupSubstitutes}</div>
+            {/* Team Away */}
+            <div className="col m6 s12">
+              <h5>Away Team</h5>
+              <div>{this.goalTeamFunction(game.strAwayGoalDetails)}</div>
+              <div className="pitch center">
+                <div className="box-pitch">
+                  <div>{this.lineUpFunction(game.strAwayLineupGoalkeeper)}</div>
+                  <div> {this.lineUpFunction(game.strAwayLineupDefense)}</div>
+                  <div>{this.lineUpFunction(game.strAwayLineupMidfield)}</div>
+                  <div> {this.lineUpFunction(game.strAwayLineupForward)}</div>
+                </div>
+              </div>
+              <div>{this.lineUpFunctionSub(game.strAwayLineupSubstitutes)}</div>
+              <div>
+                {' '}
+                {game.strAwayYellowCards ? (
+                  <div>
+                    Yellow Card:{' '}
+                    {this.cardTeamFunction(game.strAwayYellowCards)}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <div>
+                {game.strAwayRedCards ? (
+                  <div>
+                    Red Card: {this.cardTeamFunction(game.strAwayRedCards)}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           </div>
-        );
-      }
+        </div>
+      );
     }
   };
 
   render() {
     return (
       <div className="custom-container">
-        <button
-          className="btn right back-return"
-          onClick={this.props.history.goBack}
-        >
+        <button className="btn back-return" onClick={this.props.history.goBack}>
           <i className="far fa-arrow-alt-circle-left"></i> Return
         </button>
         {this.props.detailGame ? this.renderMatchDay() : 'nothing'}
-        {this.props.detailGame ? this.renderVideo() : 'nothing'}
+        {this.props.detailGame ? (
+          <div className="center">
+            <h3>Video</h3>
+            {this.renderVideo()}
+          </div>
+        ) : (
+          'nothing'
+        )}
       </div>
     );
   }
@@ -153,7 +276,8 @@ class EventDetails extends React.Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    detailGame: state.league.eventDetails.events
+    detailGame: state.league.eventDetails.events,
+    leagues: state.league.league.teams
   };
 }
 export default connect(mapStateToProps, actions)(EventDetails);
