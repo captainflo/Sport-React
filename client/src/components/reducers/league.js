@@ -24,7 +24,9 @@ import {
   GET_EVENT_LEAGUE,
   EVENT_LEAGUE_ERROR,
   GET_TABLE_LEAGUE,
-  TABLE_LEAGUE_ERROR
+  TABLE_LEAGUE_ERROR,
+  GET_EVENT_DETAILS,
+  EVENT_DETAILS_ERROR
 } from '../actions/types';
 const INITIAL_STATE = {
   league: '',
@@ -40,7 +42,8 @@ const INITIAL_STATE = {
   errorMessage: '',
   allLeagues: '',
   eventLeague: '',
-  tableLeague: ''
+  tableLeague: '',
+  eventDetails: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -96,6 +99,10 @@ export default function(state = INITIAL_STATE, action) {
     case GET_TABLE_LEAGUE:
       return { ...state, tableLeague: action.payload || false };
     case TABLE_LEAGUE_ERROR:
+      return { ...state, errorMessage: action.payload };
+    case GET_EVENT_DETAILS:
+      return { ...state, eventDetails: action.payload || false };
+    case EVENT_LEAGUE_ERROR:
       return { ...state, errorMessage: action.payload };
 
     default:

@@ -29,7 +29,9 @@ import {
   GET_EVENT_LEAGUE,
   EVENT_LEAGUE_ERROR,
   GET_TABLE_LEAGUE,
-  TABLE_LEAGUE_ERROR
+  TABLE_LEAGUE_ERROR,
+  GET_EVENT_DETAILS,
+  EVENT_DETAILS_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -328,6 +330,21 @@ export const eventByLeague = id => async dispatch => {
     dispatch({
       type: EVENT_LEAGUE_ERROR,
       payload: 'cannot find the event leagues'
+    });
+  }
+};
+
+//Get Event Details
+export const eventDetails = id => async dispatch => {
+  try {
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=${id}`
+    );
+    dispatch({ type: GET_EVENT_DETAILS, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: EVENT_DETAILS_ERROR,
+      payload: 'cannot find the event details'
     });
   }
 };

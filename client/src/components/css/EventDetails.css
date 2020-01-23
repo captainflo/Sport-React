@@ -1,0 +1,31 @@
+.pitch {
+  background: url('/images/pitch.jpg') no-repeat center center;
+  width: 306px;
+  height: 523px;
+  color: black;
+}
+
+.player-pitch{
+  display: inline-grid;
+  width: 74px;
+}
+
+.box-pitch{
+  padding-top: 2px;
+}
+.box-pitch p {
+  margin-top: 47px;
+}
+
+.box-pitch p:first-child {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+.box-pitch p:last-child {
+  margin-top: 85px;
+}
+
+.text-player-pitch{
+  font-size: 10px;
+  color: 'grey';
+}

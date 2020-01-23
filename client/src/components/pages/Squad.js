@@ -18,12 +18,12 @@ class Squad extends React.Component {
 
   renderPlayers = () => {
     if (this.props.players !== undefined) {
-      const sortedUsers = _.orderBy(
+      const sortedPlayers = _.orderBy(
         this.props.players,
         [player => player.strPosition],
-        ['Manager', 'Centre Back']
+        ['asc']
       );
-      return sortedUsers.map(player => {
+      return sortedPlayers.map(player => {
         return (
           <tr key={player.idPlayer}>
             <Link to={`/player/${player.idPlayer}`}>

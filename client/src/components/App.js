@@ -16,6 +16,7 @@ import League from './pages/League';
 import Team from './pages/Team';
 import Player from './pages/Player';
 import Soccer from './pages/Soccer';
+import EventDetails from './pages/EventDetails';
 
 class App extends React.Component {
   componentDidMount() {
@@ -38,6 +39,7 @@ class App extends React.Component {
           <Route path="/league/:league" component={League} />
           <Route path="/team/:id" component={Team} />
           <Route path="/player/:id" component={Player} />
+          <Route path="/eventDetails/:id" component={EventDetails} />
 
           {this.props.authenticated ? (
             <div>
