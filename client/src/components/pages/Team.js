@@ -11,8 +11,8 @@ class Team extends React.Component {
     this.props.teamDetail(this.props.match.params.id);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.teams !== this.props.teams) {
+  UNSAFE_componentWillMount(prevProps) {
+    if (prevProps !== this.props) {
       this.props.teamDetail(this.props.match.params.id);
     }
   }

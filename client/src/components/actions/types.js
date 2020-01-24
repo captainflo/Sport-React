@@ -29,3 +29,5 @@ export const GET_TABLE_LEAGUE = 'get_table_league';
 export const TABLE_LEAGUE_ERROR = 'table_league_error';
 export const GET_EVENT_DETAILS = 'get_event_details';
 export const EVENT_DETAILS_ERROR = 'event_details_error';
+export const GET_ARTICLE = 'get_article';
+export const ARTICLE_ERROR = 'article_error';
