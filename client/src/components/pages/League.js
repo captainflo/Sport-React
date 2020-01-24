@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/League.css';
+import NewsLeague from './NewsLeague';
 
 class League extends React.Component {
   componentDidMount() {
@@ -11,8 +12,8 @@ class League extends React.Component {
     this.props.competition(this.props.match.params.league);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.league !== this.props.league) {
+  UNSAFE_componentWillMount(prevProps) {
+    if (prevProps !== this.props) {
       this.props.tableLeague(this.props.match.params.league);
       this.props.leagueDetails(this.props.match.params.league);
       this.props.competition(this.props.match.params.league);
@@ -179,6 +180,7 @@ class League extends React.Component {
         </button>
         <div className="custom-container">
           {this.renderLeagueDetails()}
+          <NewsLeague idLeague={this.props.match.params.league} />
           <div>
             <h4>Table Season</h4>
             <table className="table-league centered responsive-table">

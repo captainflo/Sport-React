@@ -27,6 +27,7 @@ app.use(passport.session());
 
 // Routes
 require('./routes/authRoutes')(app);
+require('./routes/articleRoutes')(app);
 
 // Connect Mongo Atlas
 mongoose.connect(keys.mongoURI, {

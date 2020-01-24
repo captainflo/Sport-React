@@ -12,8 +12,8 @@ class Player extends React.Component {
     this.props.playerContract(this.props.match.params.id);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.players !== this.props.players) {
+  UNSAFE_componentWillMount(prevProps) {
+    if (prevProps !== this.props) {
       this.props.PlayerHonours(this.props.match.params.id);
       this.props.playerFormer(this.props.match.params.id);
       this.props.playerDetails(this.props.match.params.id);

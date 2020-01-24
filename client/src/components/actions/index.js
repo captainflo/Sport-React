@@ -31,7 +31,9 @@ import {
   GET_TABLE_LEAGUE,
   TABLE_LEAGUE_ERROR,
   GET_EVENT_DETAILS,
-  EVENT_DETAILS_ERROR
+  EVENT_DETAILS_ERROR,
+  GET_ARTICLE,
+  ARTICLE_ERROR
 } from './types';
 import * as JWT from 'jwt-decode';
 
@@ -360,6 +362,21 @@ export const playerByName = name => async dispatch => {
     dispatch({
       type: PLAYER_ERROR,
       payload: 'cannot find the player'
+    });
+  }
+};
+
+///////////////////////////////////////// Scrapping Ohohoh //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const scrapNews = id => async dispatch => {
+  try {
+    const response = await axios.get(`${keys.siteUrl}/api/league/${id}`);
+    dispatch({ type: GET_ARTICLE, payload: response.data });
+  } catch (e) {
+    dispatch({
+      type: ARTICLE_ERROR,
+      payload: 'cannot find Article'
     });
   }
 };

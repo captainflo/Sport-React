@@ -14,8 +14,8 @@ class Schedule extends React.Component {
     this.props.tableLeague(this.props.idLeague);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.team !== this.props.team) {
+  UNSAFE_componentWillMount(prevProps) {
+    if (prevProps !== this.props) {
       this.props.next5EventsByTeam(this.props.team);
       this.props.last5EventsByTeam(this.props.team);
       this.props.competition(this.props.idLeague);
