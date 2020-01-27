@@ -47,7 +47,6 @@ class Schedule extends React.Component {
   };
 
   renderAllEventTeam = () => {
-    this.props.eventByLeague(this.props.idLeague);
     if (this.props.eventLeague !== undefined) {
       return this.props.eventLeague.map(event => {
         if (
@@ -73,6 +72,8 @@ class Schedule extends React.Component {
               </div>
             </div>
           );
+        } else {
+          return <div key={event.idEvent}></div>;
         }
       });
     }
@@ -96,6 +97,8 @@ class Schedule extends React.Component {
               </div>
             </div>
           );
+        } else {
+          return <div>nothing found...</div>;
         }
       });
     }
@@ -119,10 +122,10 @@ class Schedule extends React.Component {
                     this.props.idLeague !== '4391' &&
                     this.props.idLeague !== '4424' &&
                     this.props.idLeague !== '4380' ? (
-                      <Link to={`/eventDetails/${nextEvent.idEvent}`}>
-                        <p>{nextEvent.strEvent}</p>
-                      </Link>
+                      // <Link to={`/eventDetails/${nextEvent.idEvent}`}>
+                      <p>{nextEvent.strEvent}</p>
                     ) : (
+                      // </Link>
                       <p>{nextEvent.strEvent}</p>
                     )}
 
@@ -171,15 +174,15 @@ class Schedule extends React.Component {
                     this.props.idLeague !== '4391' &&
                     this.props.idLeague !== '4424' &&
                     this.props.idLeague !== '4380' ? (
-                      <Link to={`/eventDetails/${lastEvent.idEvent}`}>
-                        <div>
-                          <p className="score">
-                            {lastEvent.intHomeScore} - {lastEvent.intAwayScore}
-                          </p>
-                          {lastEvent.strEvent}
-                        </div>
-                      </Link>
+                      // <Link to={`/eventDetails/${lastEvent.idEvent}`}>
+                      <div>
+                        <p className="score">
+                          {lastEvent.intHomeScore} - {lastEvent.intAwayScore}
+                        </p>
+                        {lastEvent.strEvent}
+                      </div>
                     ) : (
+                      // </Link>
                       <div>
                         <p className="score">
                           {lastEvent.intHomeScore} - {lastEvent.intAwayScore}
