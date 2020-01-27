@@ -27,6 +27,63 @@ class Sidebar extends React.Component {
     }
   }
 
+  renderSport() {
+    return (
+      <ul>
+        <li>
+          <Link to="/league/4391">
+            <img
+              className="sidebar-logo"
+              src={process.env.PUBLIC_URL + '/images/nfl.png'}
+              alt="avatar"
+            />
+            NFL
+          </Link>
+        </li>
+        <li>
+          <Link to="/league/4387">
+            <img
+              className="sidebar-logo"
+              src={process.env.PUBLIC_URL + '/images/NBA.png'}
+              alt="avatar"
+            />
+            NBA
+          </Link>
+        </li>
+        <li>
+          <Link to="/league/4424">
+            <img
+              className="sidebar-logo"
+              src={process.env.PUBLIC_URL + '/images/mlb.png'}
+              alt="avatar"
+            />
+            MLB
+          </Link>
+        </li>
+        <li>
+          <Link to="/league/4380">
+            <img
+              className="sidebar-logo"
+              src={process.env.PUBLIC_URL + '/images/nhl.png'}
+              alt="avatar"
+            />
+            NHL
+          </Link>
+        </li>
+        <li>
+          <Link to="/soccer">
+            <img
+              className="sidebar-logo"
+              src={process.env.PUBLIC_URL + '/images/foot.png'}
+              alt="avatar"
+            />
+            SOCCER
+          </Link>
+        </li>
+      </ul>
+    );
+  }
+
   render() {
     return (
       <ul id="slide-out" className="sidenav">
@@ -34,8 +91,9 @@ class Sidebar extends React.Component {
           <div className="user-view">
             <div className="background">
               <img
-                src={process.env.PUBLIC_URL + '/images/water.jpg'}
+                src={process.env.PUBLIC_URL + '/images/banner.jpg'}
                 alt="background"
+                className="sidebar-background"
               />
             </div>
             {this.props.authenticated ? (
@@ -79,6 +137,7 @@ class Sidebar extends React.Component {
         <li>
           <div className="divider" />
         </li>
+        <li>{this.renderSport()}</li>
       </ul>
     );
   }
