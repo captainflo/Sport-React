@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../css/Schedule.css';
-import ChartWithAnimation from '../utils/dashbord/ChartWithAnimation';
+// import ChartWithAnimation from '../utils/dashbord/ChartWithAnimation';
 
 class Schedule extends React.Component {
   componentDidMount() {
@@ -61,14 +61,14 @@ class Schedule extends React.Component {
               </p>
               <div className="container-flex" key={event.idEvent}>
                 <p>{this.renderImage(event.idHomeTeam)}</p>
-                <Link to={`/eventDetails/${event.idEvent}`}>
-                  <div>
-                    <p className="score">
-                      {event.intHomeScore} - {event.intAwayScore}
-                    </p>
-                    {event.strEvent}
-                  </div>
-                </Link>
+                {/* <Link to={`/eventDetails/${event.idEvent}`}> */}
+                <div>
+                  <p className="score">
+                    {event.intHomeScore} - {event.intAwayScore}
+                  </p>
+                  {event.strEvent}
+                </div>
+                {/* </Link> */}
                 <p>{this.renderImage(event.idAwayTeam)}</p>
               </div>
             </div>
@@ -87,12 +87,12 @@ class Schedule extends React.Component {
               <h6>Game played {table.played}</h6>
               <p></p>
               <div key={table.name}>
-                <ChartWithAnimation
+                {/* <ChartWithAnimation
                   win={table.win}
                   draw={table.draw}
                   loss={table.loss}
                   played={table.played}
-                />
+                /> */}
               </div>
             </div>
           );
