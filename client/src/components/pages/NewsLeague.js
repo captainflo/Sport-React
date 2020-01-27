@@ -10,7 +10,7 @@ class NewsLeague extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.articles !== this.props.articles) {
+    if (this.props.idLeague !== prevProps.idLeague) {
       this.props.scrapNews(this.props.idLeague);
     }
   }

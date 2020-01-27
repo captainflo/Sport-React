@@ -15,13 +15,12 @@ class Schedule extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.team !== this.props.team) {
+    if (this.props.team !== prevProps.team) {
       this.props.next5EventsByTeam(this.props.team);
       this.props.last5EventsByTeam(this.props.team);
       this.props.competition(this.props.idLeague);
       this.props.eventByLeague(this.props.idLeague);
       this.props.tableLeague(this.props.idLeague);
-      this.renderImage();
     }
   }
 
@@ -48,6 +47,7 @@ class Schedule extends React.Component {
   };
 
   renderAllEventTeam = () => {
+    this.props.eventByLeague(this.props.idLeague);
     if (this.props.eventLeague !== undefined) {
       return this.props.eventLeague.map(event => {
         if (
@@ -225,10 +225,10 @@ class Schedule extends React.Component {
         this.props.idLeague !== '4380' &&
         this.props.eventLeague ? (
           <div>
-            <div className="col m4 s12 schedule-box">
+            <div className="col m12 s12 schedule-box">
               {this.renderAllEventTeam()}
             </div>
-            <div className="col m8 s12 ">{this.renderChart()}</div>
+            {/* <div className="col m8 s12 ">{this.renderChart()}</div> */}
           </div>
         ) : (
           ''

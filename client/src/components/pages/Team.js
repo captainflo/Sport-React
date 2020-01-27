@@ -12,7 +12,7 @@ class Team extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.teams !== this.props.teams) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.teamDetail(this.props.match.params.id);
     }
   }

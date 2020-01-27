@@ -13,7 +13,7 @@ class League extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.league !== this.props.league) {
+    if (this.props.match.params.league !== prevProps.match.params.league) {
       this.props.tableLeague(this.props.match.params.league);
       this.props.leagueDetails(this.props.match.params.league);
       this.props.competition(this.props.match.params.league);

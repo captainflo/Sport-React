@@ -13,7 +13,7 @@ class Player extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.players !== this.props.players) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.PlayerHonours(this.props.match.params.id);
       this.props.playerFormer(this.props.match.params.id);
       this.props.playerDetails(this.props.match.params.id);

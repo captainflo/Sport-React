@@ -11,7 +11,7 @@ class Squad extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.team !== this.props.team) {
+    if (this.props.team !== prevProps.team) {
       this.props.playersByTeam(this.props.team);
     }
   }
