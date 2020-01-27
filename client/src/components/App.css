@@ -101,4 +101,8 @@ nav{
     margin-top: -13px;
     display: block;
   }
+
+  .text-player{
+    display: contents;
+  }
 }
