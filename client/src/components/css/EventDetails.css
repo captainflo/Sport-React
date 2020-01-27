@@ -43,3 +43,17 @@
 .goal-event{
   margin-right: 15px;
 }
+
+@media only screen and (max-width: 600px) {
+
+.title-event-details{
+  font-size: 12px;
+}
+.team-logo-event{
+  width: 20%;
+}
+
+iframe{
+  width: 300px !important;
+}
+}

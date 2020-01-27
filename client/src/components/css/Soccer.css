@@ -5,3 +5,11 @@
 .logo-soccer-league-liga{
   width: 50%;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .logo-soccer-league{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

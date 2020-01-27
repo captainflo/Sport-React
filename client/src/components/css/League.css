@@ -49,6 +49,19 @@
 
 
 @media only screen and (max-width: 600px) {
+
+  .team-logo {
+    max-width: 16%;
+    margin-right: 0px;
+}
+  .trophy {
+    display: block;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+
   .table-league th:first-child {
     height: 64px;
     padding-top: 20px;

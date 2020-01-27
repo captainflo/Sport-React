@@ -11,8 +11,8 @@ class Team extends React.Component {
     this.props.teamDetail(this.props.match.params.id);
   }
 
-  UNSAFE_componentWillMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.teams !== this.props.teams) {
       this.props.teamDetail(this.props.match.params.id);
     }
   }
@@ -103,7 +103,7 @@ class Team extends React.Component {
     return (
       <div className="custom-container">
         <button
-          className="btn right back-return"
+          className="btn right back-return hide-on-small-and-down"
           onClick={this.props.history.goBack}
         >
           <i className="far fa-arrow-alt-circle-left"></i> Return

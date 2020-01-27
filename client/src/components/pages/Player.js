@@ -12,8 +12,8 @@ class Player extends React.Component {
     this.props.playerContract(this.props.match.params.id);
   }
 
-  UNSAFE_componentWillMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.players !== this.props.players) {
       this.props.PlayerHonours(this.props.match.params.id);
       this.props.playerFormer(this.props.match.params.id);
       this.props.playerDetails(this.props.match.params.id);
@@ -177,7 +177,7 @@ class Player extends React.Component {
             <h3>Career Honours </h3>
             <div className="table-honor">
               <table className="responsive-table">
-                <thead>
+                <thead className="index-honor-table">
                   <tr>
                     <th>Trophy</th>
                     <th>Season</th>

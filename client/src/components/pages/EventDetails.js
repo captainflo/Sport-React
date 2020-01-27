@@ -165,7 +165,7 @@ class EventDetails extends React.Component {
         <div>
           {/* Score info */}
           <div className="center">
-            <h4>
+            <h4 className="title-event-details">
               {this.renderImage(game.idHomeTeam)} {game.strEvent}{' '}
               {this.renderImage(game.idAwayTeam)}
             </h4>

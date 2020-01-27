@@ -29,3 +29,14 @@
 .box-contract p {
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  h3{
+    font-size: 25px !important;
+  }
+  .index-honor-table th:first-child{
+    padding-top: 12px;
+    height: auto;
+  }
+}
+

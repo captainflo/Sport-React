@@ -73,4 +73,19 @@ nav{
   .btn-signin{
     width: 100%;
   }
+
+  /* navbar logo */
+  .brand-logo {
+    width: 200px;
+  }
+
+  nav .brand-logo{
+    padding-top: 10px !important;
+  }
+
+  .title-logo {
+    font-size: 20px;
+    margin-top: -13px;
+    display: block;
+  }
 }

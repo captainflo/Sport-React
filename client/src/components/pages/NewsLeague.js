@@ -9,8 +9,8 @@ class NewsLeague extends React.Component {
     this.props.scrapNews(this.props.idLeague);
   }
 
-  UNSAFE_componentWillMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.articles !== this.props.articles) {
       this.props.scrapNews(this.props.idLeague);
     }
   }
@@ -19,15 +19,14 @@ class NewsLeague extends React.Component {
     if (this.props.articles !== undefined) {
       return this.props.articles.map(article => {
         return (
-          <div className="col m6 s12">
+          <div key={article.title} className="col m6 s12">
             <a
-              key={article.title}
               href={'https://www.nytimes.com/' + article.link}
               target="_blank"
               rel="noopener noreferrer"
             >
               <div className="card-product hoverable">
-                <img src={article.image} />
+                <img src={article.image} alt={article.image} />
                 <div className="card-product-infos">
                   <h2>{article.title}</h2>
                   <p>{article.text}</p>

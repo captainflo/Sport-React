@@ -12,8 +12,8 @@ class League extends React.Component {
     this.props.competition(this.props.match.params.league);
   }
 
-  UNSAFE_componentWillMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.league !== this.props.league) {
       this.props.tableLeague(this.props.match.params.league);
       this.props.leagueDetails(this.props.match.params.league);
       this.props.competition(this.props.match.params.league);
@@ -173,7 +173,7 @@ class League extends React.Component {
       <div>
         <div className="banner-team center">{this.renderTeam()}</div>
         <button
-          className="btn right back-return"
+          className="btn right back-return hide-on-small-and-down"
           onClick={this.props.history.goBack}
         >
           <i className="far fa-arrow-alt-circle-left"></i> Return
@@ -218,7 +218,6 @@ class League extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     auth: state.auth.authenticated,
     league: state.league.league.teams,

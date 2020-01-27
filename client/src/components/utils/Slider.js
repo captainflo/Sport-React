@@ -10,21 +10,21 @@ class Slider extends React.Component {
 
   render() {
     return (
-      <div class="slider">
-        <ul class="slides">
+      <div className="slider">
+        <ul className="slides">
           {/* NFL */}
           <li>
             <img
               src={process.env.PUBLIC_URL + '/images/bannerNFL.jpg'}
               alt="banner"
             />
-            <div class="caption left-align">
+            <div className="caption left-align">
               <img
                 className="banner-logo-nfl"
                 src={process.env.PUBLIC_URL + '/images/nfl.png'}
                 alt="banner"
               />
-              <h5 class="light grey-text text-lighten-3">
+              <h5 className="light grey-text text-lighten-3">
                 All Teams in America!
               </h5>
             </div>
@@ -35,7 +35,7 @@ class Slider extends React.Component {
               src={process.env.PUBLIC_URL + '/images/bannerNBA.jpg'}
               alt="banner"
             />
-            <div class="caption center-align">
+            <div className="caption center-align">
               <h3>
                 <img
                   className="banner-logo"
@@ -43,7 +43,7 @@ class Slider extends React.Component {
                   alt="banner"
                 />
               </h3>
-              <h5 class="light grey-text text-lighten-3">
+              <h5 className="light grey-text text-lighten-3">
                 All Teams in America!
               </h5>
             </div>
@@ -54,13 +54,13 @@ class Slider extends React.Component {
               src={process.env.PUBLIC_URL + '/images/bannerMLB.jpg'}
               alt="banner"
             />
-            <div class="caption left-align">
+            <div className="caption left-align">
               <img
                 className="banner-logo"
                 src={process.env.PUBLIC_URL + '/images/mlb.png'}
                 alt="banner"
               />
-              <h5 class="light grey-text text-lighten-3">
+              <h5 className="light grey-text text-lighten-3">
                 All Teams in America!
               </h5>
             </div>
@@ -71,13 +71,13 @@ class Slider extends React.Component {
               src={process.env.PUBLIC_URL + '/images/bannerNHL.jpg'}
               alt="banner"
             />
-            <div class="caption center-align box-text-banner">
+            <div className="caption center-align box-text-banner">
               <img
                 className="banner-logo"
                 src={process.env.PUBLIC_URL + '/images/nhl.png'}
                 alt="banner"
               />
-              <h5 class="light grey-text text-lighten-3">
+              <h5 className="light grey-text text-lighten-3">
                 All Teams in America!
               </h5>
             </div>
@@ -88,13 +88,13 @@ class Slider extends React.Component {
               src={process.env.PUBLIC_URL + '/images/BannerSoccer.jpg'}
               alt="banner"
             />
-            <div class="caption bottom-align">
+            <div className="caption bottom-align">
               <img
                 className="banner-logo"
                 src={process.env.PUBLIC_URL + '/images/foot.png'}
                 alt="banner"
               />
-              <h5 class="light grey-text text-lighten-3">
+              <h5 className="light grey-text text-lighten-3">
                 All the best league around the world!
               </h5>
             </div>

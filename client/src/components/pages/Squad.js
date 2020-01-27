@@ -10,8 +10,8 @@ class Squad extends React.Component {
     this.props.playersByTeam(this.props.team);
   }
 
-  UNSAFE_componentWillMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.team !== this.props.team) {
       this.props.playersByTeam(this.props.team);
     }
   }

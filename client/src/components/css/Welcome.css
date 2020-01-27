@@ -32,3 +32,12 @@
   padding-top: 25px;
   color: white;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .box-sport-logo a {
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+}
+

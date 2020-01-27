@@ -9,3 +9,21 @@
 .box-text-banner{
   margin-top: 30px;
 }
+
+@media only screen and (max-width: 600px) {
+  /* Slider */
+
+  .slider .slides{
+    height: 200px !important;
+  }
+
+  .slider{
+    margin-bottom: -150px;
+  }
+
+  .banner-logo{
+    height: auto !important;
+    width: 250px !important;
+  }
+}
+

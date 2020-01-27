@@ -14,8 +14,8 @@ class Schedule extends React.Component {
     this.props.tableLeague(this.props.idLeague);
   }
 
-  UNSAFE_componentWillMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.team !== this.props.team) {
       this.props.next5EventsByTeam(this.props.team);
       this.props.last5EventsByTeam(this.props.team);
       this.props.competition(this.props.idLeague);
@@ -83,7 +83,7 @@ class Schedule extends React.Component {
       return this.props.tables.map(table => {
         if (table.teamid === this.props.team) {
           return (
-            <div>
+            <div key={table.teamid}>
               <h6>Game played {table.played}</h6>
               <p></p>
               <div key={table.name}>
@@ -109,7 +109,7 @@ class Schedule extends React.Component {
             const idLeague = this.props.leagues[i].idLeague;
             if (nextEvent.idLeague === idLeague) {
               return (
-                <div>
+                <div key={nextEvent.idEvent}>
                   <p className="date-schedule">
                     Day {nextEvent.intRound} - {nextEvent.dateEvent}
                   </p>
@@ -161,7 +161,7 @@ class Schedule extends React.Component {
             const idLeague = this.props.leagues[i].idLeague;
             if (lastEvent.idLeague === idLeague) {
               return (
-                <div key={lastEvent.idTeam}>
+                <div key={lastEvent.idEvent}>
                   <p className="date-schedule">
                     Day {lastEvent.intRound} - {lastEvent.dateEvent}
                   </p>
