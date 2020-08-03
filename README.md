@@ -1,4 +1,4 @@
-# WIKI NETWORK
+# WIKI SPORT
 
 Using a single API, this project enables sports fans to track and analyze games, seasons, players, teams, and relevant news with realtime data in a user friendly interface.
 
