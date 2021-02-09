@@ -46,9 +46,9 @@ class Header extends React.Component {
             <a href="#/" data-target="slide-out" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            {/* <ul id="nav-mobile" className="right hide-on-med-and-down">
               {this.renderLinks()}
-            </ul>
+            </ul> */}
           </div>
         </nav>
         <Sidebar />
@@ -59,7 +59,7 @@ class Header extends React.Component {
 
 function mapStateToPros(state) {
   return {
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
   };
 }
 
